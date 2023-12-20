@@ -8,7 +8,7 @@
 
                 <?php $post_id = get_the_ID(); ?>
 
-                <span>RÉFÉRENCE : <?php the_field('ref_photo'); ?></span>
+                <span class="ref_form">RÉFÉRENCE : <?php the_field('ref_photo'); ?></span>
                 <span>CATÉGORIES :
                     <?php
                     $categs = get_the_terms($post_id, 'categorie');
@@ -47,6 +47,14 @@
         <div class="order">
             <span>Cette photo vous interesse ?</span>
             <button class="cta_order" type="button">Contact</button>
+            <section class="popup">
+                <div class="popup_container">
+                    <div class="popup-contenu">
+                        <div class="contact-hero" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/images/Contact.png'); "></div>
+                        <?php echo do_shortcode('[contact-form-7 id="1c9b1d5" title="Sans titre"]'); ?>
+                    </div>
+                </div>
+            </section>
         </div>
         <div class="mini-carrousel">
         </div>

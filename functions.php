@@ -10,6 +10,7 @@
 }
 add_action('wp_enqueue_scripts', 'mon_theme_enqueue_style');
 
+
 /* Ajout d'un menu au header */
 function header_menu()
 {
@@ -35,3 +36,7 @@ add_image_size('custom-thumbnail-hero', 1440, 1000, true);
 add_image_size('custom-thumbnail-home', 590, 500, true);
 
 add_theme_support('title-tag');
+
+// ENLEVER LES BALISE P DE CONTACT FORM 7
+
+add_filter('wpcf7_autop_or_not', '__return_false');

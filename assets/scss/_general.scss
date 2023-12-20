@@ -7,6 +7,9 @@ body {
       margin: 0 auto;
    }
 }
+.main_blur {
+   filter: blur(20px);
+}
 
 @font-face {
    font-family: "Poppins", sans-serif;

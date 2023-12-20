@@ -12,9 +12,17 @@
     <?php wp_body_open(); ?>
     <header>
         <div class="header_top">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Logo.png" alt="logo Mota Photographie" />
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/Logo.png" alt="logo Mota Photographie" />
             <nav class="nav-link">
                 <?php wp_nav_menu(array('theme_location' => 'header', 'container_class' => 'link_header')); ?>
             </nav>
         </div>
+        <section class="popup">
+            <div class="popup_container">
+                <div class="popup-contenu">
+                    <div class="contact-hero" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/images/Contact.png'); "></div>
+                    <?php echo do_shortcode('[contact-form-7 id="1c9b1d5" title="Sans titre"]'); ?>
+                </div>
+            </div>
+        </section>
     </header>
