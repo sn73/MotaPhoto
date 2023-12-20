@@ -1,0 +1,24 @@
+.header_top {
+   height: 80px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   padding: 0px 150px;
+   align-items: center;
+   .nav-link {
+      display: flex;
+      gap: 45px;
+      .menu {
+         display: flex;
+         gap: 45px;
+         list-style: none;
+         a {
+            font-family: "Space Mono", monospace;
+            font-weight: 400;
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+         }
+      }
+   }
+}

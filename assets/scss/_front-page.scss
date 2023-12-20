@@ -1,0 +1,106 @@
+.hero_home {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   h1 {
+      font-family: "Space Mono", monospace;
+      font-weight: 700;
+      opacity: 0.7;
+      /* Ajouter des contours blancs */
+      color: #ffffff00;
+      -webkit-text-stroke: 3px white;
+
+      font-size: 110px;
+      text-align: center;
+      position: absolute;
+      font-style: italic;
+   }
+}
+
+.images-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin-top: 40px;
+   gap: 20px;
+   .image-box {
+      position: relative;
+      width: calc(50% - 10px);
+      max-height: 500px;
+      overflow: hidden;
+      &:hover .overlay {
+         display: block;
+      }
+      img {
+         width: 100%;
+         min-height: 500px;
+         position: relative;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
+      .hidden {
+         display: none;
+      }
+
+      .overlay {
+         position: absolute;
+         height: 500px;
+         width: 590px;
+         bottom: 0;
+         background-color: #00000099;
+         .icon_eye {
+            position: absolute;
+            left: 50%;
+            bottom: 250px;
+            transform: scale(2.5);
+         }
+         .icon_full {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 11px;
+            right: 18px;
+            border: solid 0px;
+            border-radius: 50%;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+         }
+         .title-photo {
+            color: white;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            position: absolute;
+            bottom: 2%;
+            left: 4%;
+         }
+         .categorie-photo {
+            color: white;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            position: absolute;
+            bottom: 2%;
+            right: 5%;
+         }
+      }
+   }
+   .cta {
+      border: solid 0px;
+      border-radius: 2px;
+      background: #d8d8d8;
+      box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.02);
+      width: 24%;
+      height: 50px;
+      font-size: 16px;
+      margin: 20px auto 40px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+}

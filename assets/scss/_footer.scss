@@ -1,0 +1,19 @@
+.link_nav_footer {
+   display: flex;
+   justify-content: center;
+   border-top: solid 1px black;
+   padding: 10px 0;
+      #menu-footer_menu {
+         display: flex;
+         gap: 100px;
+      }
+   li {
+      font-family: 'Space Mono', monospace;
+      list-style: none;
+      a {
+         text-decoration: none;
+         color: black;
+         font-size: 18px;
+      }
+   }
+}
