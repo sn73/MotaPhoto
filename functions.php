@@ -1,4 +1,5 @@
-<?php function mon_theme_enqueue_style()
+<?php 
+function mon_theme_enqueue_style()
 {
 	$theme   = wp_get_theme('montheme');
 	$version = $theme->get('Version');
@@ -32,8 +33,8 @@ add_theme_support('post-thumbnails');
 
 // Ajouter une taille d'image personnalisée
 add_image_size('custom-thumbnail-hero', 1440, 1000, true);
-
 add_image_size('custom-thumbnail-home', 590, 500, true);
+add_image_size('custom-thumbnail-carrousel', 91, 71, true);
 
 add_theme_support('title-tag');
 

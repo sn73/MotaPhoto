@@ -60,10 +60,21 @@
       justify-content: center;
       align-items: center;
    }
-   .mini-carrousel {
-      width: 10%;
-      img {
-         width: 100%;
+   .carrousel {
+      &_content {
+         gap: 15px;
+         display: flex;
+         flex-direction: column;
+         &_arrow {
+            display: flex;
+            justify-content: space-around;
+            &_left {
+               transform: scale(1.5);
+            }
+            &_right {
+               transform: scale(1.5);
+            }
+         }
       }
    }
 }

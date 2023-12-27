@@ -1,6 +1,6 @@
 <?php get_header();
 ?>
-<main>
+<main <?php body_class('single-page'); ?>>
     <section class="infos">
         <div class="details-image">
             <div class="content-photo">
@@ -56,7 +56,30 @@
                 </div>
             </section>
         </div>
-        <div class="mini-carrousel">
+        <div class="carrousel">
+            <?php
+            $id = get_the_ID();
+            $args_single = array(
+                'post_type' => 'photographie',
+                'posts_per_page' => 1,
+                // 'meta_key'  => '_main_char_field',
+                // 'orderby'   => 'rand',
+                'post__not_in' => array($id)
+
+            );
+            $photographies_query = new WP_Query($args_single);
+            ?>
+            <div class="carrousel_content">
+                <?php the_post_thumbnail(array(91, 71)); ?>
+                <div class="carrousel_content_arrow">
+                    <span class="carrousel_content_arrow_left">
+                        <i class="fa-solid fa-arrow-left-long" style="color: #000000;"></i>
+                    </span>
+                    <span class="carrousel_content_arrow_right">
+                        <i class="fa-solid fa-arrow-right-long" style="color: #000000;"></i>
+                    </span>
+                </div>
+            </div>
         </div>
     </section>
     <section class="like-more">
@@ -79,18 +102,53 @@
                     <div id="overlay-box" class="image-box">
                         <?php the_post_thumbnail(array(590, 500)); ?>
                         <div class="hidden overlay">
-                            <i class="fa-solid fa-expand icon_full" style="color: #ffffff;"></i>
-                            <a href="<?php the_permalink(); ?>">
+                            <i class="fa-solid fa-expand icon_full" style="color: #ffffff;">
+                                <section class="lightbox">
+                                    <div class="lightbox_box">
+                                        <div class="lightbox_container">
+                                            <span class="arrow_left">
+                                                <i class="fa-solid fa-arrow-left-long"></i>
+                                                <span> Précédente</span>
+                                            </span>
+                                            <?php the_post_thumbnail('large'); ?>
+                                            <span class="arrow_right">
+                                                <span> Suivante</span>
+                                                <i class="fa-solid fa-arrow-right-long"></i>
+                                            </span>
+                                        </div>
+                                        <div class="lightbox_info">
+                                            <span><?php the_field('ref_photo'); ?></span>
+                                            <span class="categ">
+                                                <?php
+                                                $categs = get_the_terms($post_id, 'categorie');
+                                                if ($categs && !is_wp_error($categs)) {
+                                                    foreach ($categs as $categ) {
+                                                        echo $categ->name;
+                                                    }
+                                                }
+                                                ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </section>
+                            </i> <a href="<?php the_permalink(); ?>">
                                 <i class="fa-regular fa-eye icon_eye" style="color: #ffffff;"></i>
                             </a>
-                            <span class="title-photo"><?php the_title(); ?></span>
-                            <span class="categorie-photo">
-                                <?php
-                                $categs = get_the_terms($post_id, 'categorie');
-                                foreach ($categs as $categ) {
-                                    echo $categ->name;
-                                } ?>
-                            </span>
+                            <div class="content">
+                                <span class="content_title"><?php the_title(); ?></span>
+                                <span class="content_categorie">
+                                    <?php
+                                    $categs = get_the_terms($post_id, 'categorie');
+                                    if ($categs && !is_wp_error($categs)) {
+                                        foreach ($categs as $categ) {
+                                            echo $categ->name;
+                                        }
+                                    } else {
+                                        echo 'Aucune catégorie associée à cet article.';
+                                    }
+                                    ?>
+                                </span>
+                            </div>
                         </div>
                     </div>
             <?php
@@ -102,6 +160,34 @@
             ?>
             <button class="cta_all-pic" type="button">Toutes les photos</button>
         </section>
+
+        <section class="lightbox">
+            <div class="lightbox_container">
+                <span class="arrow_left">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                    <span> Précédente</span>
+                </span>
+                <?php the_post_thumbnail('large'); ?>
+                <span class="arrow_right">
+                    <span> Suivante</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </span>
+            </div>
+            <div class="lightbox_info">
+                <span><?php the_field('ref_photo'); ?></span>
+                <span class="categ">
+                    <?php
+                    $categs = get_the_terms($post_id, 'categorie');
+                    if ($categs && !is_wp_error($categs)) {
+                        foreach ($categs as $categ) {
+                            echo $categ->name;
+                        }
+                    }
+                    ?>
+                </span>
+            </div>
+        </section>
+
 </main>
 
 <?php

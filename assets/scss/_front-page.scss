@@ -68,25 +68,27 @@
             align-items: center;
             justify-content: center;
          }
-         .title-photo {
-            color: white;
-            font-family: "Poppins", sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            text-transform: uppercase;
-            position: absolute;
-            bottom: 2%;
-            left: 4%;
-         }
-         .categorie-photo {
-            color: white;
-            font-family: "Poppins", sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            text-transform: uppercase;
-            position: absolute;
-            bottom: 2%;
-            right: 5%;
+         .content {
+            &_title {
+               color: white;
+               font-family: "Poppins", sans-serif;
+               font-weight: 500;
+               font-size: 14px;
+               text-transform: uppercase;
+               position: absolute;
+               bottom: 2%;
+               left: 4%;
+            }
+            &_categorie {
+               color: white;
+               font-family: "Poppins", sans-serif;
+               font-weight: 500;
+               font-size: 14px;
+               text-transform: uppercase;
+               position: absolute;
+               bottom: 2%;
+               right: 5%;
+            }
          }
       }
    }
