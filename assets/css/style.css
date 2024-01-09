@@ -8,9 +8,17 @@ body main {
   width: 1200px;
   margin: 0 auto;
 }
+body main #load-more {
+  text-decoration: none;
+  color: black;
+}
 
-.main_blur {
-  filter: blur(20px);
+.blur_main {
+  filter: blur(15px);
+}
+
+.visible {
+  display: block;
 }
 
 @font-face {
@@ -68,6 +76,9 @@ body main {
   font-size: 18px;
   text-decoration: none;
   color: black;
+}
+.header .menu_mobile {
+  display: none;
 }
 
 .link_nav_footer {
@@ -181,7 +192,8 @@ body main {
   bottom: 2%;
   right: 5%;
 }
-.images-container .cta {
+
+.cta {
   border: solid 0px;
   border-radius: 2px;
   background: #d8d8d8;
@@ -196,81 +208,43 @@ body main {
 }
 
 .dropdown {
+  position: relative;
   padding-top: 80px;
+  display: flex;
 }
 .dropdown_btn {
-  /* Style du bouton de la liste déroulante */
   padding: 10px;
-  background-color: #fff;
   color: #313144;
   border: none;
   border: solid 1px;
   border-radius: 8px;
   cursor: pointer;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
+  margin: 0;
+  position: relative;
+}
+.dropdown_btn_list {
+  cursor: pointer;
+  padding: 11px 24px;
+}
+.dropdown_btn_list:hover {
+  background-color: red;
+  transition: background-color 0.3s;
 }
 .dropdown_categories {
   /* Style de base pour la liste déroulante */
   display: inline-block;
   width: 21%;
 }
-.dropdown_categories ul {
-  /* Style de la liste déroulante elle-même */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 8px 8px;
-  display: none;
-  width: 100%;
-  margin-top: 40px;
-  z-index: 20;
-}
-.dropdown_categories ul li {
-  /* Style des éléments de la liste déroulante */
-  padding: 11px 24px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.dropdown_categories ul li:hover {
-  background-color: red;
-}
 .dropdown_format {
   margin-left: 35px;
   /* Style de base pour la liste déroulante */
   display: inline-block;
   width: 21%;
-}
-.dropdown_format ul {
-  /* Style de la liste déroulante elle-même */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 8px 8px;
-  display: none;
-  width: 100%;
-  margin-top: 40px;
-  z-index: 20;
-}
-.dropdown_format ul li {
-  /* Style des éléments de la liste déroulante */
-  padding: 11px 24px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.dropdown_format ul li:hover {
-  background-color: red;
+  position: relative;
 }
 .dropdown_sortby {
   position: absolute;
@@ -279,28 +253,18 @@ body main {
   display: inline-block;
   width: 21%;
 }
-.dropdown_sortby ul {
-  /* Style de la liste déroulante elle-même */
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 8px 8px;
-  display: none;
-  width: 100%;
-  margin-top: 40px;
-  z-index: 20;
-}
-.dropdown_sortby ul li {
-  /* Style des éléments de la liste déroulante */
-  padding: 11px 24px;
+.dropdown .cta_form {
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-.dropdown_sortby ul li:hover {
-  background-color: red;
+  border: solid 1px;
+  border-radius: 8px;
+  background: #d8d8d8;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.02);
+  width: 6%;
+  height: 40px;
+  font-size: 16px;
+  margin-left: 35px;
+  position: absolute;
+  left: 45%;
 }
 
 .lightbox {
@@ -311,41 +275,77 @@ body main {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100vw;
-  height: 100vh;
   display: none;
 }
 .lightbox_box {
   margin: 115px auto;
-  width: 30%;
-  height: 50%;
   justify-content: center;
   align-items: center;
+}
+.lightbox_close {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  position: absolute;
+  right: 3%;
+  width: 2%;
+  height: 4%;
+}
+.lightbox_close .croix {
+  width: 2%;
+  height: 2%;
+}
+.lightbox_close .line {
+  display: none;
+  width: 50px;
+  border: 1px solid white;
+}
+.lightbox_close .line:first-child {
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+}
+.lightbox_close .line:last-child {
+  display: block;
+  position: absolute;
+  transform: rotate(-45deg);
 }
 .lightbox_container {
   position: relative;
 }
 .lightbox_container img {
+  position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, 0%) !important;
+  height: 90vh;
 }
 .lightbox_container .arrow_left {
   position: absolute;
   top: 50%;
-  left: -30%;
+  left: -170px;
   transform: scale(1.5) translateY(-50%);
   cursor: pointer;
   font-family: "Space Mono", monospace;
   font-size: 14px;
 }
+.lightbox_container .arrow_left a {
+  text-decoration: none;
+  color: white;
+}
 .lightbox_container .arrow_right {
   position: absolute;
   top: 50%;
-  right: -27%;
+  right: -150px;
   transform: scale(1.5) translateY(-50%);
   cursor: pointer;
   font-family: "Space Mono", monospace;
   font-size: 14px;
+}
+.lightbox_container .arrow_right a {
+  text-decoration: none;
+  color: white;
 }
 .lightbox_info {
   display: flex;
@@ -429,8 +429,28 @@ body main {
 .order-photo .carrousel_content_arrow_left {
   transform: scale(1.5);
 }
+.order-photo .carrousel_content_arrow_left .prev_post {
+  display: none;
+}
+.order-photo .carrousel_content_arrow_left:hover .prev_post {
+  display: flex;
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(-40%, 10%);
+}
 .order-photo .carrousel_content_arrow_right {
   transform: scale(1.5);
+}
+.order-photo .carrousel_content_arrow_right .next_post {
+  display: none;
+}
+.order-photo .carrousel_content_arrow_right:hover .next_post {
+  display: flex;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(40%, 10%);
 }
 
 .like-more {
@@ -524,11 +544,70 @@ body main {
 
 /***** PARTIE FRONT-PAGE *****/
 @media screen and (min-width: 320px) and (max-width: 767.9px) {
+  .header {
+    height: 120px;
+  }
   .header_logo {
     transform: scale(1.5);
   }
-  .header .nav-link .menu a {
-    font-size: 34px;
+  .header .nav-link {
+    display: none;
+  }
+  .header .menu_mobile {
+    display: block;
+    width: 6.5%;
+    height: 62%;
+  }
+  .header .menu_mobile_open {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    height: 100%;
+  }
+  .header .menu_mobile_open .line {
+    border: 1px solid black;
+  }
+  .header .menu_mobile_open .croix span:first-child {
+    transform: rotate(45deg) translate(-50%, -50%);
+    position: relative;
+    top: 50%;
+    left: 50%;
+  }
+  .header .menu_mobile_open .croix span:last-child {
+    transform: rotate(-45deg) translate(-50%, -50%);
+    position: relative;
+    bottom: 50%;
+    left: 50%;
+  }
+  .header .menu_mobile .nav-link-mobile {
+    background-color: red;
+    width: 100%;
+    height: calc(100% - 110px);
+    position: fixed;
+    z-index: 30;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48.5%);
+  }
+  .header .menu_mobile .nav-link-mobile .link_header {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header .menu_mobile .nav-link-mobile .link_header .menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 160px;
+    margin: 0;
+  }
+  .header .menu_mobile .nav-link-mobile .link_header .menu a {
+    font-size: 125px;
+    text-decoration: none;
+    color: white;
   }
   .dropdown {
     display: flex;
@@ -537,6 +616,17 @@ body main {
     width: 100%;
     margin: 100px auto;
     padding: 0;
+  }
+  .dropdown_height {
+    height: 100px;
+  }
+  .dropdown_btn {
+    height: 100%;
+    font-size: 44px;
+    border-radius: 20px;
+  }
+  .dropdown_btn_list {
+    font-size: 12px;
   }
   .dropdown_categories {
     width: 70%;
@@ -566,6 +656,16 @@ body main {
     position: relative;
     bottom: 13px;
     right: 30px;
+  }
+  .dropdown .cta_form {
+    border: solid 0px;
+    border-radius: 20px;
+    background: #d8d8d8;
+    box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0);
+    width: 70%;
+    height: 100px;
+    font-size: 44px;
+    margin: 0 auto;
   }
   .images-container {
     flex-wrap: nowrap;
@@ -677,5 +777,14 @@ body main {
   /***** FORMULAIRE DE CONTACT *****/
   .popup {
     transform: scale(1.8) translate(-28%, -25%);
+  }
+  .link_nav_footer #menu-footer_menu {
+    display: flex;
+    gap: 100px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .link_nav_footer #menu-footer_menu a {
+    font-size: 34px;
   }
 }/*# sourceMappingURL=style.css.map */

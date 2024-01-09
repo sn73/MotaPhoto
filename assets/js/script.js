@@ -1,35 +1,4 @@
-/* Fonction liste déroulante catégories */
-function categoriesDropdown() {
-   var dropdown = document.querySelector(".dropdown_categories ul");
-   dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
-}
-
-function selectcat(option) {
-   document.querySelector(".dropdown_categories button").innerText = option;
-   categoriesDropdown(); // Ferme la liste déroulante après la sélection
-}
-/* Fonction liste déroulante format */
-function formatDropdown() {
-   var dropdown = document.querySelector(".dropdown_format ul");
-   dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
-}
-
-function selectformat(option) {
-   document.querySelector(".dropdown_format button").innerText = option;
-   formatDropdown(); // Ferme la liste déroulante après la sélection
-}
-/* Fonction liste déroulante trier par */
-function sortbyDropdown() {
-   var dropdown = document.querySelector(".dropdown_sortby ul");
-   dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
-}
-
-function selectsortby(option) {
-   document.querySelector(".dropdown_sortby button").innerText = option;
-   sortbyDropdown(); // Ferme la liste déroulante après la sélection
-}
-
-// Gestion évenement clic bouton contact
+// FONCTION POUR L'OUVERTURE DE LA POP-UP CONTACT DE L'ACCUEIL
 
 document.addEventListener("DOMContentLoaded", function () {
    let btn_menu = document.getElementById("menu-item-107");
@@ -38,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
    btn_menu.addEventListener("click", function (event) {
       popup_contact.style.display = "block";
-
+      main.classList.add("blur_main");
       // Empêcher la propagation du clic à l'extérieur de la popup
       event.stopPropagation();
    });
@@ -47,9 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
       // Vérifier si le clic s'est produit à l'extérieur de la popup
       if (!popup_contact.contains(event.target) && popup_contact.style.display === "block") {
          popup_contact.style.display = "none";
+         main.classList.remove("blur_main");
       }
    });
 });
+
+// FONCTION POUR L'OUVERTURE DE LA POP-UP CONTACT SUR LA PAGE D'ARTICLE SEUL
 
 document.addEventListener("DOMContentLoaded", function () {
    // Vérifiez si la classe main contient "single-page"
@@ -57,34 +29,68 @@ document.addEventListener("DOMContentLoaded", function () {
    if (mainElement.classList.contains("single-page")) {
       let btn_cta_order = document.querySelector(".cta_order");
       let popup_contact = document.querySelector(".popup");
+      let main = document.querySelector("main");
 
       btn_cta_order.addEventListener("click", function (event) {
+         // Récupère la ref de la photo
+         var referencePhotoValue = document.querySelector(".ref_form").innerText;
+         // Injecter la ref dans le formulaire
+         document.querySelector('[name="reference"]').value = referencePhotoValue;
+
          popup_contact.style.display = "block";
+         main.classList.add("blur_main");
          event.stopPropagation();
       });
 
       document.addEventListener("click", function (event) {
          if (!popup_contact.contains(event.target) && popup_contact.style.display === "block") {
             popup_contact.style.display = "none";
+            main.classList.remove("blur_main");
          }
       });
    }
 });
 
+// FONCTION POUR L'AFFICHAGE DES LIGHTBOX DU POST CIBLÉ
+
 document.addEventListener("DOMContentLoaded", function () {
-   let full = document.querySelectorAll(".icon_full");
-   let lightbox = document.querySelector(".lightbox");
+   let fullIcons = document.querySelectorAll(".icon_full");
 
-   full.forEach((e) => {
-      e.addEventListener("click", function (event) {
-         lightbox.style.display = "flex";
+   fullIcons.forEach((fullIcon) => {
+      fullIcon.addEventListener("click", function () {
+         // Récupérer l'id associé à la lightbox
+         let postId = fullIcon.getAttribute("data-post-id");
+         let lightboxId = "lightbox_" + postId;
+         let lightbox = document.getElementById(lightboxId);
+         let close = document.querySelector(".lightbox_close");
 
-         event.stopPropagation();
+         // Afficher la lightbox en plein écran
+         if (lightbox) {
+            lightbox.style.display = "flex";
+         }
+
+         close.classList.toggle("croix");
+
+         document.addEventListener("click", function (event) {
+            let close = event.target.closest(".lightbox_close");
+            let lightbox_close = event.target.closest(".lightbox");
+
+            if (close && lightbox_close && window.getComputedStyle(lightbox_close).display === "flex") {
+               lightbox_close.style.display = "none";
+            }
+         });
       });
    });
-   document.addEventListener("click", function (event) {
-      if (!lightbox.contains(event.target) && lightbox.style.display === "none") {
-         lightbox.style.display = "flex";
-      }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+   let btndropdown = document.querySelectorAll(".dropdown_btn");
+   let li_dropdown = document.querySelectorAll(".dropdown_btn_list");
+
+   btndropdown.forEach((btndrop) => {
+      btndrop.addEventListener("click", function () {
+         const BlueBorder = btndrop.style.border === "1px solid blue";
+         btndrop.style.border = BlueBorder ? "" : "1px solid blue";
+      });
    });
 });

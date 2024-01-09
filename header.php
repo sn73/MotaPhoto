@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
     <title>Mota Photographies</title>
 </head>
@@ -16,6 +16,16 @@
             <nav class="nav-link">
                 <?php wp_nav_menu(array('theme_location' => 'header', 'container_class' => 'link_header')); ?>
             </nav>
+            <div class="menu_mobile">
+                <div class="menu_mobile_open">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+                <nav class="nav-link-mobile">
+                    <?php wp_nav_menu(array('theme_location' => 'header', 'container_class' => 'link_header')); ?>
+                </nav>
+            </div>
         </div>
         <section class="popup">
             <div class="popup_container">

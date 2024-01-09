@@ -7,7 +7,6 @@
 @mixin btn-dropdown {
    /* Style du bouton de la liste déroulante */
    padding: 10px;
-   background-color: #fff;
    color: #313144;
    border: none;
    border: solid 1px;
@@ -15,81 +14,69 @@
    cursor: pointer;
    width: 100%;
 
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
    font-family: "Poppins", sans-serif;
    font-weight: 500;
    text-transform: uppercase;
 }
 
-@mixin ul_dropdown {
-   /* Style de la liste déroulante elle-même */
-   list-style: none;
-   padding: 0;
-   margin: 0;
-   position: absolute;
-   background-color: #fff;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   border-radius: 0 0 8px 8px;
-   display: none;
-   width: 100%;
-   margin-top: 40px;
-   z-index: 20;
-}
-
-@mixin li_dropdown {
-   /* Style des éléments de la liste déroulante */
-   padding: 11px 24px;
-   cursor: pointer;
-   transition: background-color 0.3s;
-}
-
 $color_bg_hover: red;
+$color_border_filtre: #215aff;
 
 .dropdown {
+   position: relative;
+
    padding-top: 80px;
+   display: flex;
    &_btn {
-      @include btn_dropdown;
+      // @include btn_dropdown;
+      padding: 10px;
+      color: #313144;
+      border: none;
+      border: solid 1px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin: 0;
+      position: relative;
+
+      &_list {
+         cursor: pointer;
+         padding: 11px 24px;
+         &:hover {
+            background-color: $color_bg_hover;
+            transition: background-color 0.3s;
+         }
+      }
    }
    &_categories {
       @include style_dropdown;
-      ul {
-         @include ul_dropdown;
-         li {
-            @include li_dropdown;
-            &:hover {
-               background-color: $color_bg_hover;
-            }
-         }
-      }
    }
    &_format {
       margin-left: 35px;
       @include style_dropdown;
 
-      ul {
-         @include ul_dropdown;
-         li {
-            @include li_dropdown;
-            &:hover {
-               background-color: $color_bg_hover;
-            }
-         }
-      }
+      position: relative;
    }
    &_sortby {
       position: absolute;
       right: 0;
       @include style_dropdown;
-      ul {
-         @include ul_dropdown;
-         li {
-            @include li_dropdown;
-            &:hover {
-               background-color: $color_bg_hover;
-            }
-         }
-      }
+   }
+   .cta_form {
+      cursor: pointer;
+      border: solid 1px;
+      border-radius: 8px;
+      background: #d8d8d8;
+      box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.02);
+      width: 6%;
+      height: 40px;
+      font-size: 16px;
+      margin-left: 35px;
+
+      position: absolute;
+      left: 45%;
    }
 }
