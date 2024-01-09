@@ -22,8 +22,6 @@ function script_ajax()
 
 // Hook pour ajouter le script et les paramètres Ajax à la fin de la file d'attente
 add_action('wp_enqueue_scripts', 'script_ajax');
-add_action('wp_ajax_script_ajax', 'script_ajax');
-add_action('wp_ajax_nopriv_script_ajax', 'script_ajax');
 
 
 
@@ -56,3 +54,62 @@ add_theme_support('title-tag');
 
 // ENLEVER LES BALISE P DE CONTACT FORM 7
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+function get_lightbox_content()
+{
+	$post_id = $_POST['post_id'];
+
+	// Récupérer l'image mise en avant
+	$image_url = get_the_post_thumbnail_url($post_id, 'large');
+
+	// Récupérer la référence du champ ACF
+	$ref_photo = get_field('ref_photo', $post_id);
+
+	// Récupérer la taxonomie "categorie"
+	$categs = get_the_terms($post_id, 'categorie');
+	$categories = array();
+
+	if ($categs && !is_wp_error($categs)) {
+		foreach ($categs as $categ) {
+			$categories[] = $categ->name;
+		}
+	}
+
+	// Préparez les données à renvoyer
+	$lightbox_data = array(
+		'image_url' => $image_url,
+		'ref_photo' => $ref_photo,
+		'categories' => $categories,
+	);
+
+	wp_send_json($lightbox_data);
+}
+
+add_action('wp_ajax_get_lightbox_content', 'get_lightbox_content');
+add_action('wp_ajax_nopriv_get_lightbox_content', 'get_lightbox_content');
+
+function FindSelectFilter()
+{
+	global $args_query;
+
+	if (isset($_GET['categories']) and ($_GET['categories'] != '')) {
+		$select_categorie = $_GET['categories'];
+		$args_query['tax_query'][] = array(
+			'taxonomy' => 'categorie',
+			'field' => 'slug',
+			'terms' => $select_categorie,
+		);
+	}
+	if (isset($_GET['formats']) and ($_GET['formats'] != '')) {
+		$select_format = $_GET['formats'];
+		$args_query['tax_query'][] = array(
+			'taxonomy' => 'format',
+			'field' => 'slug',
+			'terms' => $select_format,
+		);
+	}
+	if (isset($_GET['sortby']) and ($_GET['sortby'] != '')) {
+		$select_sortby = $_GET['sortby'];
+		$args_query['order'] = $select_sortby;
+	}
+}

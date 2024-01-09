@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
    let btndropdown = document.querySelectorAll(".dropdown_btn");
-   let li_dropdown = document.querySelectorAll(".dropdown_btn_list");
 
    btndropdown.forEach((btndrop) => {
       btndrop.addEventListener("click", function () {

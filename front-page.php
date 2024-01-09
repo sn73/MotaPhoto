@@ -31,71 +31,14 @@
         'post_type' => 'photographie',
         'posts_per_page' => 8,
         // 'meta_key'  => '_main_char_field',
-        // 'orderby'   => 's',
+        // 'orderby'   => '',
         'paged' => 1,
     );
-    if (isset($_GET['categories']) and ($_GET['categories'] != '')) {
-        $select_categorie = $_GET['categories'];
-        $args_query['tax_query'][] = array(
-            'taxonomy' => 'categorie',
-            'field' => 'slug',
-            'terms' => $select_categorie,
-        );
-    }
-    if (isset($_GET['formats']) and ($_GET['formats'] != '')) {
-        $select_format = $_GET['formats'];
-        $args_query['tax_query'][] = array(
-            'taxonomy' => 'format',
-            'field' => 'slug',
-            'terms' => $select_format,
-        );
-    }
-    if (isset($_GET['sortby']) and ($_GET['sortby'] != '')) {
-        $select_sortby = $_GET['sortby'];
-        $args_query['order'] = $select_sortby;
-    } ?>
+    FindSelectFilter()
+    ?>
 
-    <form class="dropdown" action="" method="GET">
-        <div class="dropdown_categories dropdown_height">
-            <select class="dropdown_btn" id="categorie" name="categories">
-                <option value="" class="dropdown_btn_list">Catégories</option>
-                <?php
-                $selected_category = isset($_GET['categories']) ? $_GET['categories'] : ''; // Récupère la valeur sélectionnée, si elle existe
+    <?php get_template_part('partials/content', 'form'); ?>
 
-                $category_terms = get_terms('categorie');
-                foreach ($category_terms as $term_cat) {
-                    $selected = ($term_cat->slug == $selected_category) ? 'selected' : '';
-                    echo '<option class="dropdown_btn_list" value="' . $term_cat->slug . '" ' . $selected . '>' . $term_cat->name . '</option>';
-                }
-                ?>
-            </select>
-        </div>
-        <div class="dropdown_format dropdown_height">
-            <select class="dropdown_btn" id="format" name="formats">
-                <option class="dropdown_btn_list" value="">Format</option>
-                <?php
-                $selected_format = isset($_GET['formats']) ? $_GET['formats'] : ''; // Récupère la valeur sélectionnée, si elle existe
-
-                $format_terms = get_terms('format');
-                foreach ($format_terms as $term_form) {
-                    $selected = ($term_form->slug == $selected_format) ? 'selected' : '';
-                    echo '<option class="dropdown_btn_list" value="' . $term_form->slug . '" ' . $selected . '>' . $term_form->name . '</option>';
-                }
-                ?>
-            </select>
-        </div>
-        <div class="dropdown_sortby dropdown_height">
-            <select class="dropdown_btn" id="sortby" name="sortby">
-                <?php
-                $select_sortby = isset($_GET['sortby']) ? $_GET['sortby'] : '';
-                ?>
-                <option class="dropdown_btn_list" value="" <?php echo ($select_sortby == '') ? 'selected' : ''; ?>>Trier par </option>
-                <option class="dropdown_btn_list" value="ASC" <?php echo ($select_sortby == 'ASC') ? 'selected' : ''; ?>>Du plus récent au plus ancien</option>
-                <option class="dropdown_btn_list" value="DESC" <?php echo ($select_sortby == 'DESC') ? 'selected' : ''; ?>>Du plus ancien au plus récent</option>
-            </select>
-        </div>
-        <input class="cta_form" type="submit" value="OK">
-    </form>
 
     <?php
     $photographies_query = new WP_Query($args_query);
@@ -143,8 +86,7 @@
         wp_reset_postdata();
         ?>
     </section>
-    <a href="#!" class="cta" id="load-more">Charger plus</a>
-    <!-- <button type="button" class="cta">Charger plus</button> -->
+    <button type="button" class="cta">Charger plus</button>
 </main>
 <?php
 get_footer();
