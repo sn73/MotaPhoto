@@ -6,9 +6,20 @@ $prev_post_id = !empty($prev_post) ? $prev_post->ID : null;
 
 $next_post = get_next_post();
 $next_post_id = !empty($next_post) ? $next_post->ID : null;
+
+$current_ref = get_field('ref_photo', $post_id);
+
+$categs_data = '';
+
+$categs = get_the_terms($post_id, 'categorie');
+if ($categs && !is_wp_error($categs)) {
+    foreach ($categs as $categ) {
+        $categs_data .= ' data-categorie="' . esc_attr($categ->name) . '"';
+    }
+}
 ?>
 
-<section class="lightbox" id="lightbox_<?php echo $post_id; ?>">
+<section class="lightbox" id="lightbox_<?php echo $post_id; ?>" data-post-id="<?php echo $post_id; ?>">
     <div class="lightbox_box">
         <div class="lightbox_close">
             <span class="line"></span>
@@ -16,21 +27,20 @@ $next_post_id = !empty($next_post) ? $next_post->ID : null;
             <span class="line"></span>
         </div>
         <div class="lightbox_container">
-            <?php the_post_thumbnail('large'); ?>
-            <span class="arrow_left prev-link" data-post-id="<?php echo $prev_post_id; ?>">
+            <img class="lightbox_image" src="<?php echo get_the_post_thumbnail_url($post_id, 'large'); ?>" alt="Image">
+            <span class="arrow_left prev-link">
                 <i class="fa-solid fa-arrow-left-long"></i>
                 Précédente
             </span>
-            <span class="arrow_right next-link" data-post-id="<?php echo $next_post_id; ?>">
+            <span class="arrow_right next-link">
                 Suivante
                 <i class="fa-solid fa-arrow-right-long"></i>
             </span>
         </div>
         <div class="lightbox_info">
-            <span><?php echo get_field('ref_photo', $post_id); ?></span>
-            <span class="categ">
+            <span class="ref_photo" data-ref="<?php echo $current_ref; ?>"><?php echo $current_ref; ?></span>
+            <span class="categ" <?php echo $categs_data; ?>>
                 <?php
-                $categs = get_the_terms($post_id, 'categorie');
                 if ($categs && !is_wp_error($categs)) {
                     foreach ($categs as $categ) {
                         echo $categ->name;

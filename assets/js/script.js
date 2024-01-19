@@ -51,37 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
    }
 });
 
-// FONCTION POUR L'AFFICHAGE DES LIGHTBOX DU POST CIBLÉ
-
-document.addEventListener("DOMContentLoaded", function () {
-   let fullIcons = document.querySelectorAll(".icon_full");
-
-   fullIcons.forEach((fullIcon) => {
-      fullIcon.addEventListener("click", function () {
-         // Récupérer l'id associé à la lightbox
-         let postId = fullIcon.getAttribute("data-post-id");
-         let lightboxId = "lightbox_" + postId;
-         let lightbox = document.getElementById(lightboxId);
-         let close = document.querySelector(".lightbox_close");
-
-         // Afficher la lightbox en plein écran
-         if (lightbox) {
-            lightbox.style.display = "flex";
-         }
-
-         close.classList.toggle("croix");
-
-         document.addEventListener("click", function (event) {
-            let close = event.target.closest(".lightbox_close");
-            let lightbox_close = event.target.closest(".lightbox");
-
-            if (close && lightbox_close && window.getComputedStyle(lightbox_close).display === "flex") {
-               lightbox_close.style.display = "none";
-            }
-         });
-      });
-   });
-});
+// AJOUT D'UNE BORDURE BLEU AUX DROPDOWNS
 
 document.addEventListener("DOMContentLoaded", function () {
    let btndropdown = document.querySelectorAll(".dropdown_btn");
@@ -91,5 +61,24 @@ document.addEventListener("DOMContentLoaded", function () {
          const BlueBorder = btndrop.style.border === "1px solid blue";
          btndrop.style.border = BlueBorder ? "" : "1px solid blue";
       });
+   });
+});
+
+// AFFICHER LE MENU AU CLIC
+
+document.addEventListener("DOMContentLoaded", function () {
+   let menuMobile = document.querySelector(".menu_mobile");
+   menuMobile.addEventListener("click", function () {
+      let navLink = document.querySelector("header nav");
+
+      if (navLink.style.display === "none") {
+         navLink.style.display = "block";
+         navLink.classList.add("nav-link-mobile");
+         menuMobile.classList.add("croix");
+      } else {
+         navLink.style.display = "none";
+         navLink.classList.remove("nav-link-mobile");
+         menuMobile.classList.remove("croix");
+      }
    });
 });

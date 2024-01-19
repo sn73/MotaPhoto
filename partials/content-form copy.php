@@ -1,7 +1,7 @@
 <form id="dropdown" class="dropdown" action="" method="GET">
-    <div class="dropdown_categories">
+    <div class="dropdown_categories dropdown_height">
         <select class="dropdown_btn" id="categorie" name="categories">
-            <option class="dropdown_btn_list" value="">Catégories</option>
+            <option class="dropdown_btn_list" value="categorie">Catégories</option>
             <?php
             $selected_category = isset($_['categories']) ? $_GET['categories'] : ''; // Récupère la valeur sélectionnée, si elle existe
 
@@ -13,9 +13,9 @@
             ?>
         </select>
     </div>
-    <div class="dropdown_format">
+    <div class="dropdown_format dropdown_height">
         <select class="dropdown_btn" id="format" name="formats">
-            <option class="dropdown_btn_list" value="">Format</option>
+            <option class="dropdown_btn_list" value="format">Format</option>
             <?php
             $selected_format = isset($_GET['formats']) ? $_GET['formats'] : ''; // Récupère la valeur sélectionnée, si elle existe
 
@@ -27,15 +27,15 @@
             ?>
         </select>
     </div>
-    <div class="dropdown_sortby">
+    <div class="dropdown_sortby dropdown_height">
         <select class="dropdown_btn" id="sortby" name="sortby">
             <?php
             $select_sortby = isset($_GET['sortby']) ? $_GET['sortby'] : '';
             ?>
-            <option class="dropdown_btn_list" value="" <?php echo ($select_sortby == '') ? 'selected' : ''; ?>>Trier par </option>
+            <option class="dropdown_btn_list" value="sortby" <?php echo ($select_sortby == '') ? 'selected' : ''; ?>>Trier par </option>
             <option class="dropdown_btn_list" value="ASC" <?php echo ($select_sortby == 'ASC') ? 'selected' : ''; ?>>Du plus récent au plus ancien</option>
             <option class="dropdown_btn_list" value="DESC" <?php echo ($select_sortby == 'DESC') ? 'selected' : ''; ?>>Du plus ancien au plus récent</option>
         </select>
     </div>
-
+    <input class="cta_form" type="submit" value="OK">
 </form>

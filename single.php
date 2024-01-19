@@ -62,60 +62,11 @@
         <?php get_template_part('partials/content', 'carrousel'); ?>
 
     </section>
-    <section class="like-more">
-        <?php
-        $args = array(
-            'post_type' => 'photographie',
-            'posts_per_page' => 2,
-            // 'meta_key'  => '_main_char_field',
-            // 'orderby'   => '',
-            'post__not_in' => array($post_id)
-        );
-        $photographies_query = new WP_Query($args);
-        ?>
+        <section id="images-container" class="images-container margin">
 
-        <section class="images-container">
-            <?php
-            if ($photographies_query->have_posts()) : while ($photographies_query->have_posts()) : $photographies_query->the_post(); ?>
-                    <?php $post_id = get_the_ID(); ?>
-                    <div id="overlay-box" class="image-box">
-                        <?php the_post_thumbnail(array(590, 500)); ?>
-                        <div class="hidden overlay">
-                            <i class="fa-solid fa-expand icon_full" style="color: #ffffff;" data-post-id="<?php echo $post_id; ?>">
-
-                                <!-- Ajout du partials pour la lightbox -->
-                                <?php get_template_part('partials/content', 'lightbox'); ?>
-
-                            </i>
-                            <a href="<?php the_permalink(); ?>">
-                                <i class="fa-regular fa-eye icon_eye" style="color: #ffffff;"></i>
-                            </a>
-                            <div class="content">
-                                <span class="content_title"><?php the_title(); ?></span>
-                                <span class="content_categorie">
-                                    <?php
-                                    $categs = get_the_terms($post_id, 'categorie');
-                                    if ($categs && !is_wp_error($categs)) {
-                                        foreach ($categs as $categ) {
-                                            echo $categ->name;
-                                        }
-                                    } else {
-                                        echo 'Aucune catégorie associée à cet article.';
-                                    }
-                                    ?>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-            <?php
-                endwhile;
-            else :
-                echo 'Aucun résultat trouvé.';
-            endif;
-            wp_reset_postdata();
-            ?>
-            <button class="cta_all-pic" type="button">Toutes les photos</button>
         </section>
+    <button id="load-more-single" class="cta" type="button">Charger plus</button>
+    </section>
 </main>
 
 <?php

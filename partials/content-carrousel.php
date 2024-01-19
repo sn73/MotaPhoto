@@ -9,6 +9,7 @@
         'post__not_in' => array($post_id)
 
     );
+
     $prev_post = get_adjacent_post(false, '', true); // Post précédent
     $next_post = get_adjacent_post(false, '', false); // Post suivant
 
@@ -31,7 +32,7 @@
                     <div class="prev_post">
                         <?php
                         if ($prev_post_thumbnail) {
-                            echo '<img src="' . esc_url($prev_post_thumbnail[0]) . '" alt="Image du post précédent" width="' . esc_attr($prev_post_thumbnail[1]) . '" height="' . esc_attr($prev_post_thumbnail[2]) . '">';
+                            echo '<img src="' . esc_url($prev_post_thumbnail[0]) . '">';
                         }
                         ?>
                     </div>
@@ -48,7 +49,7 @@
                     <div class="next_post">
                         <?php
                         if ($next_post_thumbnail) {
-                            echo '<img src="' . esc_url($next_post_thumbnail[0]) . '" alt="Image du post suivant" width="' . esc_attr($next_post_thumbnail[1]) . '" height="' . esc_attr($next_post_thumbnail[2]) . '">';
+                            echo '<img src="' . esc_url($next_post_thumbnail[0]) . '">';
                         }
                         ?>
                     </div>

@@ -16,20 +16,15 @@
             <nav class="nav-link">
                 <?php wp_nav_menu(array('theme_location' => 'header', 'container_class' => 'link_header')); ?>
             </nav>
-            <div class="menu_mobile">
-                <div class="menu_mobile_open">
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
-                </div>
-                <nav class="nav-link-mobile">
-                    <?php wp_nav_menu(array('theme_location' => 'header', 'container_class' => 'link_header')); ?>
-                </nav>
-            </div>
+            <button class="menu_mobile">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
         </div>
         <section class="popup">
             <div class="popup_container">
-                <div class="popup-contenu">
+                <div class="popup_contenu">
                     <div class="contact-hero" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/images/Contact.png'); "></div>
                     <?php echo do_shortcode('[contact-form-7 id="1c9b1d5" title="Sans titre"]'); ?>
                 </div>
