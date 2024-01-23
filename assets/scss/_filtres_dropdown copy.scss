@@ -27,23 +27,22 @@ $color_border_filtre: #215aff;
 
    padding-top: 80px;
    display: flex;
-   justify-content: space-between;
    &_btn {
+      // @include btn_dropdown;
       padding: 10px;
       color: #313144;
+      border: none;
       border: solid 1px;
       border-radius: 8px;
       cursor: pointer;
       width: 100%;
       font-family: "Poppins", sans-serif;
       font-weight: 500;
-      font-size: 14px;
       text-transform: uppercase;
       margin: 0;
       position: relative;
-      &_list {
-         display: none;
 
+      &_list {
          cursor: pointer;
          padding: 11px 24px;
          &:hover {
@@ -54,30 +53,25 @@ $color_border_filtre: #215aff;
    }
    &_categories {
       @include style_dropdown;
-      .fa-chevron-down {
-         color: #000000;
-         position: absolute;
-         right: 15px;
-      }
    }
    &_format {
-      margin-right: 365px;
+      margin-left: 35px;
       @include style_dropdown;
+
       position: relative;
-      .fa-chevron-down {
-         color: #000000;
-         position: absolute;
-         right: 15px;
-      }
    }
    &_sortby {
-      position: relative;
+      position: absolute;
       right: 0;
       @include style_dropdown;
-      .fa-chevron-down {
-         color: #000000;
-         position: absolute;
-         right: 15px;
-      }
+   }
+   .cta_form {
+      cursor: pointer;
+      border: solid 1px;
+      border-radius: 8px;
+      background: #d8d8d8;
+      width: 6%;
+      font-size: 16px;
+      margin-left: 35px;
    }
 }

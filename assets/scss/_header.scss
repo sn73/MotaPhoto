@@ -23,6 +23,11 @@ header {
                font-size: 18px;
                text-decoration: none;
                color: black;
+               &:hover {
+                  font-size: 24px;
+                  color: #fe5858;
+                  transition: 0.5s;
+               }
             }
          }
       }

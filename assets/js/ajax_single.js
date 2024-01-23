@@ -21,30 +21,31 @@ document.addEventListener("DOMContentLoaded", function () {
    }
 });
 
-function loadPosts_Single() {
-   var url = ajaxurl + "?action=loadPosts_Single&page=" + page_single;
-   console.log(url);
 
+function loadPosts_Single() {
+   let url = ajaxurl + "?action=loadPosts_Single&page=" + page_single;
+   console.log(url);
+   
    fetch(url, {
       method: "POST",
       headers: {
          "X-Requested-With": "XMLHttpRequest",
       },
    })
-      .then((response) => response.json())
-      .then((single) => {
-         // console.log("max", data.max);
-         document.getElementById("images-container").innerHTML = single.content;
-         if (single.max == 1) {
-            document.getElementById("load-more-single").style.display = "none";
-         } else {
-            document.getElementById("load-more-single").style.display = "block";
-         }
-
-         let fullIcons_single = document.querySelectorAll(".icon_full");
-         if (fullIcons_single) {
-            lightbox_ajax(fullIcons_single);
-         }
-      })
-      .catch((error) => console.error("Erreur lors de la requête AJAX:", error));
+   .then((response) => response.json())
+   .then((single) => {
+      // console.log("max", data.max);
+      document.getElementById("images-container").innerHTML = single.content;
+      if (single.max == 1) {
+         document.getElementById("load-more-single").style.display = "none";
+      } else {
+         document.getElementById("load-more-single").style.display = "block";
+      }
+      
+      let fullIcons_single = document.querySelectorAll(".icon_full");
+      if (fullIcons_single) {
+         lightbox_ajax(fullIcons_single);
+      }
+   })
+   .catch((error) => console.error("Erreur lors de la requête AJAX:", error));
 }

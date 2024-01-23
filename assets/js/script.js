@@ -82,3 +82,36 @@ document.addEventListener("DOMContentLoaded", function () {
       }
    });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+   let dropdown_selects = document.querySelectorAll(".dropdown_btn");
+
+   dropdown_selects.forEach(function (dropdownSelect) {
+      dropdownSelect.addEventListener("click", function () {
+         // Trouver toutes les listes déroulantes
+         let dropdown_list = this.querySelectorAll(".dropdown_btn_list");
+         let chevron = this.querySelector(".fa-chevron-down");
+         // Inverser la visibilité de toutes les listes déroulantes
+         dropdown_list.forEach(function (list) {
+            if (list.style.display === "none" || list.style.display === "") {
+               list.style.display = "block";
+               chevron.style.transform = "rotate(180deg)";
+               chevron.style.transition = "0.3s ease-in-out";
+            } else {
+               list.style.display = "none";
+               chevron.style.transform = "rotate(0deg)";
+               chevron.style.transition = "0.3s ease-in-out";
+            }
+         });
+         dropdown_list.forEach(function (listItem) {
+            listItem.addEventListener("click", function () {
+               // Mettre à jour le texte de l'élément parent <ul>
+               let newFilter = this.closest(".dropdown_btn");
+               newFilter.querySelector(".dropdown_btn_text").innerText = this.innerText;
+
+               newFilter.setAttribute("data-value", this.getAttribute("data-value"));
+            });
+         });
+      });
+   });
+});

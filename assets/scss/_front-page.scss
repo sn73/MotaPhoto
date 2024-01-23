@@ -93,7 +93,8 @@
       }
    }
 }
-.cta {
+.cta,
+#load-more {
    cursor: pointer;
 
    border: solid 0px;
@@ -108,7 +109,9 @@
    justify-content: center;
    align-items: center;
    &:hover {
-      background-color: #FE5858;
-      transition: 2s;
+      font-size: 20px;
+      color: white;
+      transition: 1s;
+      background-color: #fe5858;
    }
 }

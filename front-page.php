@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<main>
+<main id="front_main">
     <section>
         <div class="hero_home">
             <?php if (get_field('titre_hero')) : ?>

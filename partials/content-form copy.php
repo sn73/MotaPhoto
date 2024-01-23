@@ -1,9 +1,9 @@
-<form id="dropdown" class="dropdown" action="" method="GET">
-    <div class="dropdown_categories dropdown_height">
+<form id="dropdown" class="dropdown" action="" method="POST">
+    <div class="dropdown_categories">
         <select class="dropdown_btn" id="categorie" name="categories">
-            <option class="dropdown_btn_list" value="categorie">Catégories</option>
+            <option class="dropdown_btn_list" value="">Catégories</option>
             <?php
-            $selected_category = isset($_['categories']) ? $_GET['categories'] : ''; // Récupère la valeur sélectionnée, si elle existe
+            $selected_category = isset($_POST['categories']) ? $_POST['categories'] : ''; // Récupère la valeur sélectionnée, si elle existe
 
             $category_terms = get_terms('categorie');
             foreach ($category_terms as $term_cat) {
@@ -13,11 +13,11 @@
             ?>
         </select>
     </div>
-    <div class="dropdown_format dropdown_height">
+    <div class="dropdown_format">
         <select class="dropdown_btn" id="format" name="formats">
-            <option class="dropdown_btn_list" value="format">Format</option>
+            <option class="dropdown_btn_list" value="">Format</option>
             <?php
-            $selected_format = isset($_GET['formats']) ? $_GET['formats'] : ''; // Récupère la valeur sélectionnée, si elle existe
+            $selected_format = isset($_POST['formats']) ? $_POST['formats'] : ''; // Récupère la valeur sélectionnée, si elle existe
 
             $format_terms = get_terms('format');
             foreach ($format_terms as $term_form) {
@@ -27,15 +27,14 @@
             ?>
         </select>
     </div>
-    <div class="dropdown_sortby dropdown_height">
+    <div class="dropdown_sortby">
         <select class="dropdown_btn" id="sortby" name="sortby">
             <?php
-            $select_sortby = isset($_GET['sortby']) ? $_GET['sortby'] : '';
+            $select_sortby = isset($_POST['sortby']) ? $_POST['sortby'] : '';
             ?>
-            <option class="dropdown_btn_list" value="sortby" <?php echo ($select_sortby == '') ? 'selected' : ''; ?>>Trier par </option>
+            <option class="dropdown_btn_list" value="" <?php echo ($select_sortby == '') ? 'selected' : ''; ?>>Trier par </option>
             <option class="dropdown_btn_list" value="ASC" <?php echo ($select_sortby == 'ASC') ? 'selected' : ''; ?>>Du plus récent au plus ancien</option>
             <option class="dropdown_btn_list" value="DESC" <?php echo ($select_sortby == 'DESC') ? 'selected' : ''; ?>>Du plus ancien au plus récent</option>
         </select>
     </div>
-    <input class="cta_form" type="submit" value="OK">
 </form>

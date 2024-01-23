@@ -1,44 +1,46 @@
 let page = 1;
 document.addEventListener("DOMContentLoaded", function () {
-   let fullIcons = document.querySelectorAll(".icon_full");
-   if (fullIcons) {
-      lightbox_ajax(fullIcons);
-   }
+   let mainFront = document.getElementById("front_main");
+   if (mainFront) {
+      let fullIcons = document.querySelectorAll(".icon_full");
+      if (fullIcons) {
+         lightbox_ajax(fullIcons);
+      }
 
-   loadPosts();
+      loadPosts();
 
-   let Select = document.querySelectorAll("select");
-   Select.forEach((element) => {
-      element.addEventListener("change", function () {
-         page = 1;
+      let Select = document.querySelectorAll(".dropdown_btn_list");
+      Select.forEach((element) => {
+         element.addEventListener("click", function () {
+            page = 1;
+
+            let dropdown = this.closest(".dropdown_btn");
+            dropdown.querySelector(".dropdown_btn_text").innerText = this.innerText;
+            dropdown.setAttribute("data-value", this.getAttribute("data-value"));
+
+            loadPosts();
+         });
+      });
+      let loadmore = document.getElementById("load-more");
+      loadmore.addEventListener("click", function () {
+         page++;
          loadPosts();
       });
-   });
-   let loadmore = document.getElementById("load-more");
-   loadmore.addEventListener("click", function () {
-      page++;
-      loadPosts();
-   });
+   }
 });
 
 function loadPosts() {
    // Récupère les valeurs du formulaire
-   let categories = document.getElementById("categorie").value;
-   let formats = document.getElementById("format").value;
-   let sortby = document.getElementById("sortby").value;
-
-   // Récupère les paramètres de l'URL actuelle
-   // let urlParams = new URLSearchParams(window.location.search);
-   // let existingCategories = urlParams.get("categories");
-   // let existingFormats = urlParams.get("formats");
-   // let existingSortBy = urlParams.get("sortby");
+   let categories = document.getElementById("categorie").getAttribute("data-value");
+   let formats = document.getElementById("format").getAttribute("data-value");
+   let sortby = document.getElementById("sortby").getAttribute("data-value");
 
    // Utilise les valeurs du formulaire si elles existent, sinon utilise celles de l'URL
    categories = categories || "";
    formats = formats || "";
    sortby = sortby || "";
 
-   let url = ajaxurl + "?action=loadPosts&page=" + page + "&categories=" + encodeURIComponent(categories) + "&formats=" + encodeURIComponent(formats) + "&sortby=" + encodeURIComponent(sortby);
+   let url = ajaxurl + "?action=loadPosts&page=" + page + "&categories=" + categories + "&formats=" + formats + "&sortby=" + sortby;
    console.log(url);
 
    fetch(url, {

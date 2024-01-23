@@ -10,9 +10,7 @@ function mon_theme_enqueue_style()
 	wp_enqueue_script('script-ajax', get_template_directory_uri() . '/assets/js/ajax.js', array('jquery'));
 	wp_localize_script('script-ajax', 'ajaxurl', admin_url('admin-ajax.php'));
 
-	wp_enqueue_script('single-ajax-script', get_stylesheet_directory_uri() . '/assets/js/ajax_single.js', array('jquery'), $version, array(
-		'strategy'  => 'defer',
-	));
+	wp_enqueue_script('single-ajax-script', get_stylesheet_directory_uri() . '/assets/js/ajax_single.js', array('jquery'), $version);
 	wp_enqueue_script('fontawesome-script', 'https://kit.fontawesome.com/5fbe3dd629.js', array());
 	wp_enqueue_script('jquery-script', 'https://code.jquery.com/jquery-3.6.4.min.js', array());
 }
@@ -48,36 +46,9 @@ add_theme_support('title-tag');
 // ENLEVER LES BALISE P DE CONTACT FORM 7
 add_filter('wpcf7_autop_or_not', '__return_false');
 
-
-// function FindSelectFilter()
-// {
-// 	global $args_query;
-
-// 	if (isset($_GET['categories']) and ($_GET['categories'] != '')) {
-// 		$select_categorie = $_GET['categories'];
-// 		$args_query['tax_query'][] = array(
-// 			'taxonomy' => 'categorie',
-// 			'field' => 'slug',
-// 			'terms' => $select_categorie,
-// 		);
-// 	}
-// 	if (isset($_GET['formats']) and ($_GET['formats'] != '')) {
-// 		$select_format = $_GET['formats'];
-// 		$args_query['tax_query'][] = array(
-// 			'taxonomy' => 'format',
-// 			'field' => 'slug',
-// 			'terms' => $select_format,
-// 		);
-// 	}
-// 	if (isset($_GET['sortby']) and ($_GET['sortby'] != '')) {
-// 		$select_sortby = $_GET['sortby'];
-// 		$args_query['order'] = $select_sortby;
-// 	}
-// }
-
 function FilterPosts()
 {
-	$page = $_GET["page"];
+	$page = $_POST["page"];
 	$numberposts = 8;
 	$totalposts = $numberposts * $page;
 
@@ -89,24 +60,24 @@ function FilterPosts()
 		'paged' => 1,
 	);
 
-	if (isset($_GET['categories']) and ($_GET['categories'] != '')) {
-		$select_categorie = $_GET['categories'];
+	if (isset($_POST['categories']) and ($_POST['categories'] != '')) {
+		$select_categorie = $_POST['categories'];
 		$args_query['tax_query'][] = array(
 			'taxonomy' => 'categorie',
 			'field' => 'slug',
 			'terms' => $select_categorie,
 		);
 	}
-	if (isset($_GET['formats']) and ($_GET['formats'] != '')) {
-		$select_format = $_GET['formats'];
+	if (isset($_POST['formats']) and ($_POST['formats'] != '')) {
+		$select_format = $_POST['formats'];
 		$args_query['tax_query'][] = array(
 			'taxonomy' => 'format',
 			'field' => 'slug',
 			'terms' => $select_format,
 		);
 	}
-	if (isset($_GET['sortby']) and ($_GET['sortby'] != '')) {
-		$select_sortby = $_GET['sortby'];
+	if (isset($_POST['sortby']) and ($_POST['sortby'] != '')) {
+		$select_sortby = $_POST['sortby'];
 		$args_query['order'] = $select_sortby;
 	}
 	return $args_query;
@@ -184,14 +155,23 @@ function loadPosts_Single()
 	$totalposts_single = $numberposts_single * $page_single;
 
 
-	$args = array(
+	$args_single = array(
 		'post_type' => 'photographie',
 		'posts_per_page' => $totalposts_single,
 		// 'meta_key'  => '_main_char_field',
 		// 'orderby'   => '',
 		'post__not_in' => array($post_id)
 	);
-	$photographies_query = new WP_Query($args);
+
+	if (isset($_POST['categories']) && is_array($_POST['categories'])) {
+		$args_single['tax_query'][] = array(
+			'taxonomy' => 'categorie',
+			'field' => 'slug',
+			'terms' => $_POST['categories'],
+		);
+	}
+	print_r($args_single);
+	$photographies_query = new WP_Query($args_single);
 
 	$max_page_single = $photographies_query->max_num_pages;
 	echo $max_page_single;

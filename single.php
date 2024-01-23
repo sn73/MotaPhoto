@@ -11,11 +11,13 @@
 
                 <span>RÉFÉRENCE : <span class="ref_form"> <?php the_field('ref_photo'); ?></span></span>
                 <span>CATÉGORIES :
-                    <?php
-                    $categs = get_the_terms($post_id, 'categorie');
-                    foreach ($categs as $categ) {
-                        echo $categ->name;
-                    } ?>
+                    <span class="categ_likemore" >
+                        <?php
+                        $categs = get_the_terms($post_id, 'categorie');
+                        foreach ($categs as $categ) {
+                            echo $categ->name;
+                        } ?>
+                    </span>
                 </span>
                 <span>FORMAT :
                     <?php
@@ -62,9 +64,9 @@
         <?php get_template_part('partials/content', 'carrousel'); ?>
 
     </section>
-        <section id="images-container" class="images-container margin">
+    <section id="images-container" class="images-container margin">
 
-        </section>
+    </section>
     <button id="load-more-single" class="cta" type="button">Charger plus</button>
     </section>
 </main>

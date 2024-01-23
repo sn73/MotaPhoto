@@ -80,6 +80,11 @@ header .header .nav-link .menu a {
   text-decoration: none;
   color: black;
 }
+header .header .nav-link .menu a:hover {
+  font-size: 24px;
+  color: #fe5858;
+  transition: 0.5s;
+}
 header .header .menu_mobile {
   display: none;
 }
@@ -105,6 +110,11 @@ header main {
   text-decoration: none;
   color: black;
   font-size: 18px;
+}
+.link_nav_footer li a:hover {
+  font-size: 24px;
+  color: #FE5858;
+  transition: 0.5s;
 }
 
 .hero_home {
@@ -199,7 +209,8 @@ header main {
   right: 5%;
 }
 
-.cta {
+.cta,
+#load-more {
   cursor: pointer;
   border: solid 0px;
   border-radius: 2px;
@@ -213,31 +224,36 @@ header main {
   justify-content: center;
   align-items: center;
 }
-.cta:hover {
-  background-color: #FE5858;
-  transition: 2s;
+.cta:hover,
+#load-more:hover {
+  font-size: 20px;
+  color: white;
+  transition: 1s;
+  background-color: #fe5858;
 }
 
 .dropdown {
   position: relative;
   padding-top: 80px;
   display: flex;
+  justify-content: space-between;
 }
 .dropdown_btn {
   padding: 10px;
   color: #313144;
-  border: none;
   border: solid 1px;
   border-radius: 8px;
   cursor: pointer;
   width: 100%;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
+  font-size: 14px;
   text-transform: uppercase;
   margin: 0;
   position: relative;
 }
 .dropdown_btn_list {
+  display: none;
   cursor: pointer;
   padding: 11px 24px;
 }
@@ -250,28 +266,34 @@ header main {
   display: inline-block;
   width: 21%;
 }
+.dropdown_categories .fa-chevron-down {
+  color: #000000;
+  position: absolute;
+  right: 15px;
+}
 .dropdown_format {
-  margin-left: 35px;
+  margin-right: 365px;
   /* Style de base pour la liste déroulante */
   display: inline-block;
   width: 21%;
   position: relative;
 }
-.dropdown_sortby {
+.dropdown_format .fa-chevron-down {
+  color: #000000;
   position: absolute;
+  right: 15px;
+}
+.dropdown_sortby {
+  position: relative;
   right: 0;
   /* Style de base pour la liste déroulante */
   display: inline-block;
   width: 21%;
 }
-.dropdown .cta_form {
-  cursor: pointer;
-  border: solid 1px;
-  border-radius: 8px;
-  background: #d8d8d8;
-  width: 6%;
-  font-size: 16px;
-  margin-left: 35px;
+.dropdown_sortby .fa-chevron-down {
+  color: #000000;
+  position: absolute;
+  right: 15px;
 }
 
 .lightbox {
@@ -363,60 +385,60 @@ header main {
   text-transform: uppercase;
 }
 
-main {
+.single-page {
   padding-top: 80px;
 }
-main .infos {
+.single-page .infos {
   display: flex;
   gap: 20px;
 }
-main .infos .details-image {
+.single-page .infos .details-image {
   display: flex;
   width: 50%;
   border-bottom: solid 1px black;
 }
-main .infos .details-image .content-photo {
+.single-page .infos .details-image .content-photo {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   gap: 25px;
-  width: 60%;
+  width: 70%;
   margin-bottom: 35px;
   text-transform: uppercase;
 }
-main .infos .details-image .content-photo h2 {
+.single-page .infos .details-image .content-photo h2 {
   font-family: "Space Mono", monospace;
   font-weight: 400;
   font-style: italic;
   font-size: 66px;
   margin: 0;
 }
-main .infos .details-image .content-photo span {
+.single-page .infos .details-image .content-photo span {
   font-family: "Space Mono", monospace;
   font-weight: 400;
   font-size: 16px;
 }
-main .infos .current-image {
+.single-page .infos .current-image {
   width: 50%;
   display: flex;
   justify-content: flex-end;
   padding-bottom: 10px;
 }
-main .order-photo {
+.single-page .order-photo {
   border-bottom: solid 1px black;
   display: flex;
   justify-content: space-between;
   max-height: 118px;
 }
-main .order-photo .order {
+.single-page .order-photo .order {
   width: 50%;
   display: flex;
   align-items: center;
 }
-main .order-photo .order span {
+.single-page .order-photo .order span {
   width: 50%;
 }
-main .order-photo .cta_order {
+.single-page .order-photo .cta_order {
   cursor: pointer;
   border: solid 0px;
   border-radius: 2px;
@@ -430,49 +452,49 @@ main .order-photo .cta_order {
   justify-content: center;
   align-items: center;
 }
-main .order-photo .cta_order:hover {
+.single-page .order-photo .cta_order:hover {
   background-color: #FE5858;
   transition: 2s;
 }
-main .order-photo .carrousel_content {
+.single-page .order-photo .carrousel_content {
   gap: 15px;
   display: flex;
   flex-direction: column;
 }
-main .order-photo .carrousel_content_arrow {
+.single-page .order-photo .carrousel_content_arrow {
   display: flex;
   justify-content: space-around;
 }
-main .order-photo .carrousel_content_arrow_left {
+.single-page .order-photo .carrousel_content_arrow_left {
   transform: scale(1.5);
 }
-main .order-photo .carrousel_content_arrow_left .prev_post {
+.single-page .order-photo .carrousel_content_arrow_left .prev_post {
   display: none;
 }
-main .order-photo .carrousel_content_arrow_left:hover .prev_post {
+.single-page .order-photo .carrousel_content_arrow_left:hover .prev_post {
   display: flex;
   position: absolute;
   bottom: 50%;
   right: 50%;
   transform: translate(-40%, 10%);
 }
-main .order-photo .carrousel_content_arrow_right {
+.single-page .order-photo .carrousel_content_arrow_right {
   transform: scale(1.5);
 }
-main .order-photo .carrousel_content_arrow_right .next_post {
+.single-page .order-photo .carrousel_content_arrow_right .next_post {
   display: none;
 }
-main .order-photo .carrousel_content_arrow_right:hover .next_post {
+.single-page .order-photo .carrousel_content_arrow_right:hover .next_post {
   display: flex;
   position: absolute;
   bottom: 50%;
   left: 50%;
   transform: translate(40%, 10%);
 }
-main .like-more {
+.single-page .like-more {
   padding-top: 70px;
 }
-main .like-more .cta_all-pic {
+.single-page .like-more .cta_all-pic {
   border: solid 0px;
   border-radius: 2px;
   background: #d8d8d8;
@@ -485,11 +507,31 @@ main .like-more .cta_all-pic {
   justify-content: center;
   align-items: center;
 }
-main .like-more span {
+.single-page .like-more span {
   font-size: 18px;
 }
-main .like-more .images-container {
+.single-page .like-more .images-container {
   margin: 0;
+}
+.single-page .cta_order {
+  cursor: pointer;
+  border: solid 0px;
+  border-radius: 2px;
+  background: #d8d8d8;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.02);
+  width: 24%;
+  height: 50px;
+  font-size: 16px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.single-page .cta_order:hover {
+  font-size: 20px;
+  color: white;
+  transition: 1s;
+  background-color: #fe5858;
 }
 
 .popup {
