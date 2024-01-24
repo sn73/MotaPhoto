@@ -11,9 +11,9 @@
 
                 <span>RÉFÉRENCE : <span class="ref_form"> <?php the_field('ref_photo'); ?></span></span>
                 <span>CATÉGORIES :
-                    <span class="categ_likemore" >
+                    <?php $categs = get_the_terms($post_id, 'categorie'); ?>
+                    <span id="categorieSpan" data-value="<?php echo $categs[0]->slug; ?>" data-id="<?php echo get_the_ID(); ?>">
                         <?php
-                        $categs = get_the_terms($post_id, 'categorie');
                         foreach ($categs as $categ) {
                             echo $categ->name;
                         } ?>
@@ -67,7 +67,8 @@
     <section id="images-container" class="images-container margin">
 
     </section>
-    <button id="load-more-single" class="cta" type="button">Charger plus</button>
+    <!-- Bouton pour afficher plus de posts -->
+    <!-- <button id="load-more-single" class="cta" type="button">Toutes les photos</button> -->
     </section>
 </main>
 

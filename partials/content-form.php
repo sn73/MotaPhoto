@@ -1,11 +1,11 @@
 <form id="dropdown" class="dropdown" action="" method="POST">
     <div class="dropdown_categories">
-        <ul class="dropdown_btn" id="categorie" data-value="" name="categories">
-            <div>
+        <ul class="dropdown_btn" id="categorie" name="categories">
+            <div class="dropdown_btn_label">
                 <span class="dropdown_btn_text">Catégories</span>
                 <i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
             </div>
-            <li class="dropdown_btn_list" data-value="">Catégories</li>
+            <li id="hide_label" class="dropdown_btn_list" data-value="">Catégories</li>
             <?php
             $selected_category = isset($_POST['categories']) ? $_POST['categories'] : ''; // Récupère la valeur sélectionnée, si elle existe
 
@@ -18,8 +18,12 @@
         </ul>
     </div>
     <div class="dropdown_format">
-        <ul class="dropdown_btn" id="format" value="" name="formats"><span class="dropdown_btn_text">Formats</span> <i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
-            <li class="dropdown_btn_list" data-value="">Formats</li>
+        <ul class="dropdown_btn" id="format" name="formats">
+            <div class="dropdown_btn_label">
+                <span class="dropdown_btn_text">Formats</span>
+                <i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
+            </div>
+            <li id="hide_label" class="dropdown_btn_list" data-value="">Formats</li>
             <?php
             $selected_format = isset($_POST['formats']) ? $_POST['formats'] : ''; // Récupère la valeur sélectionnée, si elle existe
 
@@ -32,8 +36,12 @@
         </ul>
     </div>
     <div class="dropdown_sortby">
-        <ul class="dropdown_btn" id="sortby" value="" name="sortby"><span class="dropdown_btn_text">Trier par</span> <i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
-            <li class="dropdown_btn_list" data-value="">Trier par</li>
+        <ul class="dropdown_btn" id="sortby" name="sortby">
+            <div class="dropdown_btn_label">
+                <span class="dropdown_btn_text">Trier par</span>
+                <i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
+            </div>
+            <li id="hide_label" class="dropdown_btn_list" data-value="">Trier par</li>
             <?php
             $select_sortby = isset($_POST['sortby']) ? $_POST['sortby'] : '';
             ?>
@@ -41,4 +49,7 @@
             <li class="dropdown_btn_list" data-value="DESC" <?php echo ($select_sortby == 'DESC') ? 'selected' : ''; ?>>Du plus ancien au plus récent</li>
         </ul>
     </div>
+
+    <input type="hidden" name="FilterNonce" value="<?php echo wp_create_nonce('nonce_Filter'); ?>">
+
 </form>

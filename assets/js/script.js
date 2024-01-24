@@ -1,4 +1,4 @@
-// FONCTION POUR L'OUVERTURE DE LA POP-UP CONTACT DE L'ACCUEIL
+// OUVERTURE DE LA POP-UP CONTACT DE L'ACCUEIL
 
 document.addEventListener("DOMContentLoaded", function () {
    let btn_menu = document.getElementById("menu-item-107");
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
    });
 });
 
-// FONCTION POUR L'OUVERTURE DE LA POP-UP CONTACT SUR LA PAGE D'ARTICLE SEUL
+// OUVERTURE DE LA POP-UP CONTACT SUR LA PAGE D'ARTICLE SEUL
 
 document.addEventListener("DOMContentLoaded", function () {
    // Vérifiez si la classe main contient "single-page"
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       btn_cta_order.addEventListener("click", function (event) {
          // Récupère la ref de la photo
-         var referencePhotoValue = document.querySelector(".ref_form").innerText;
+         let referencePhotoValue = document.querySelector(".ref_form").innerText;
          // Injecter la ref dans le formulaire
          document.querySelector('[name="reference"]').value = referencePhotoValue;
 
@@ -83,15 +83,16 @@ document.addEventListener("DOMContentLoaded", function () {
    });
 });
 
+// Gestion apparition des listes et des flèches
+
 document.addEventListener("DOMContentLoaded", function () {
    let dropdown_selects = document.querySelectorAll(".dropdown_btn");
 
    dropdown_selects.forEach(function (dropdownSelect) {
       dropdownSelect.addEventListener("click", function () {
-         // Trouver toutes les listes déroulantes
          let dropdown_list = this.querySelectorAll(".dropdown_btn_list");
          let chevron = this.querySelector(".fa-chevron-down");
-         // Inverser la visibilité de toutes les listes déroulantes
+
          dropdown_list.forEach(function (list) {
             if (list.style.display === "none" || list.style.display === "") {
                list.style.display = "block";
@@ -105,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
          });
          dropdown_list.forEach(function (listItem) {
             listItem.addEventListener("click", function () {
-               // Mettre à jour le texte de l'élément parent <ul>
+               // Mettre à jour le texte de l'élément <ul>
                let newFilter = this.closest(".dropdown_btn");
                newFilter.querySelector(".dropdown_btn_text").innerText = this.innerText;
 

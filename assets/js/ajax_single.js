@@ -1,19 +1,26 @@
 let page_single = 1;
 document.addEventListener("DOMContentLoaded", function () {
-   var mainElement = document.querySelector("main");
+   let mainElement = document.querySelector("main");
 
    if (mainElement && mainElement.classList.contains("single-page")) {
       let fullIconsSingle = document.querySelectorAll(".icon_full");
       if (fullIconsSingle) {
          lightbox_ajax(fullIconsSingle);
       }
-      loadPosts_Single();
 
-      let loadmoresingle = document.getElementById("load-more-single");
-      loadmoresingle.addEventListener("click", function () {
-         page_single++;
-         loadPosts_Single();
-      });
+      let categorieSpan = document.getElementById("categorieSpan");
+      let cat_ID = categorieSpan.getAttribute("data-value");
+      let id = categorieSpan.getAttribute("data-id");
+
+      loadPosts_Single(cat_ID, id);
+
+      // // Permet l'affichage de plus de posts au clic sur le bouton
+      // let loadmoresingle = document.getElementById("load-more-single");
+      // loadmoresingle.addEventListener("click", function () {
+      //    // Modification de la valeur "page_single" pour afficher tout les posts
+      //    page_single = 20;
+      //    loadPosts_Single(cat_ID, id);
+      // });
 
       console.log('La page avec la classe "single-page" a exécutez votre script.');
    } else {
@@ -21,31 +28,39 @@ document.addEventListener("DOMContentLoaded", function () {
    }
 });
 
-
-function loadPosts_Single() {
-   let url = ajaxurl + "?action=loadPosts_Single&page=" + page_single;
+function loadPosts_Single(cat_ID, post_id) {
+   let url = ajaxurl + "?action=loadPosts_Single";
    console.log(url);
-   
+
+   console.log(cat_ID);
+   console.log(post_id);
+
    fetch(url, {
       method: "POST",
       headers: {
          "X-Requested-With": "XMLHttpRequest",
       },
+      body: new URLSearchParams({
+         cat: cat_ID,
+         pid: post_id,
+         // page: page_single,
+      }),
    })
-   .then((response) => response.json())
-   .then((single) => {
-      // console.log("max", data.max);
-      document.getElementById("images-container").innerHTML = single.content;
-      if (single.max == 1) {
-         document.getElementById("load-more-single").style.display = "none";
-      } else {
-         document.getElementById("load-more-single").style.display = "block";
-      }
-      
-      let fullIcons_single = document.querySelectorAll(".icon_full");
-      if (fullIcons_single) {
-         lightbox_ajax(fullIcons_single);
-      }
-   })
-   .catch((error) => console.error("Erreur lors de la requête AJAX:", error));
+      .then((response) => response.json())
+      .then((single) => {
+         document.getElementById("images-container").innerHTML = single.content;
+
+      // A décommenter pour gérer l'apparition du bouton en fonction du nombre de page
+         // if (single.max === 1 || single.max === 0) {
+         //    document.getElementById("load-more-single").style.display = "none";
+         // } else {
+         //    document.getElementById("load-more-single").style.display = "block";
+         // }
+
+         let fullIcons_single = document.querySelectorAll(".icon_full");
+         if (fullIcons_single) {
+            lightbox_ajax(fullIcons_single);
+         }
+      })
+      .catch((error) => console.error("Erreur lors de la requête AJAX:", error));
 }

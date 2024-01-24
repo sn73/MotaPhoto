@@ -80,6 +80,7 @@ function FilterPosts()
 		$select_sortby = $_POST['sortby'];
 		$args_query['order'] = $select_sortby;
 	}
+
 	return $args_query;
 }
 add_action('wp_ajax_FilterPosts', 'FilterPosts');
@@ -89,12 +90,10 @@ add_action('wp_ajax_nopriv_FilterPosts', 'FilterPosts');
 function loadPosts()
 {
 	$args_query = FilterPosts();
-	// print_r($args_query);
 
 	$photographies_query = new WP_Query($args_query);
 
 	$max_page = $photographies_query->max_num_pages;
-	echo $max_page;
 
 	ob_start();
 
@@ -138,7 +137,6 @@ function loadPosts()
 
 	$content = ob_get_clean();
 
-	// echo $content;
 	$response = array('content' => $content, 'max' => $max_page);
 
 	ob_clean();
@@ -150,36 +148,37 @@ add_action('wp_ajax_nopriv_loadPosts', 'loadPosts');
 
 function loadPosts_Single()
 {
-	$page_single = $_GET["page"];
 	$numberposts_single = 2;
-	$totalposts_single = $numberposts_single * $page_single;
 
+		// $page_single = $_POST["page"];
+	// Ajouter pour gérer l'affichage de plus de posts
+		// $totalposts_single = $numberposts_single * $page_single;
+	// Ajouter $totalposts_single à "posts_per_page"
+
+	$cat = $_POST['cat'];
+	$pid = $_POST['pid'];
 
 	$args_single = array(
 		'post_type' => 'photographie',
-		'posts_per_page' => $totalposts_single,
-		// 'meta_key'  => '_main_char_field',
-		// 'orderby'   => '',
-		'post__not_in' => array($post_id)
+		'posts_per_page' => $numberposts_single,
+		'post__not_in' => array($pid)
+	);
+	$args_single['tax_query'][] = array(
+		'taxonomy' => 'categorie',
+		'field' => 'slug',
+		'terms' => $cat,
 	);
 
-	if (isset($_POST['categories']) && is_array($_POST['categories'])) {
-		$args_single['tax_query'][] = array(
-			'taxonomy' => 'categorie',
-			'field' => 'slug',
-			'terms' => $_POST['categories'],
-		);
-	}
-	print_r($args_single);
 	$photographies_query = new WP_Query($args_single);
 
-	$max_page_single = $photographies_query->max_num_pages;
-	echo $max_page_single;
+	// Récupère le nombre de pages
+	// $max_page_single = $photographies_query->max_num_pages;
 
 	ob_start();
 
 	if ($photographies_query->have_posts()) : while ($photographies_query->have_posts()) : $photographies_query->the_post();
 			$post_id = get_the_ID();
+
 			echo '<div class="image-box overlay-box">';
 			the_post_thumbnail(array(590, 500));
 			echo '<div class="hidden overlay">
@@ -215,8 +214,10 @@ function loadPosts_Single()
 
 	$content_single = ob_get_clean();
 
-	// echo $content;
-	$response_single = array('content' => $content_single, 'max' => $max_page_single);
+	// Ajouter ceci dans "$response" pour gérer l'affichage de toutes
+	//les photos au clic sut le bouton "load-more" de la single
+	// ", 'max' => $max_page_single"
+	$response_single = array('content' => $content_single); // à ajouter pour gérer l'affichage de posts via le nombre de page "" 
 
 	ob_clean();
 
