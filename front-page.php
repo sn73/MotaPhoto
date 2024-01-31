@@ -26,12 +26,16 @@
         </div>
     </section>
 
-    <?php get_template_part('partials/content', 'form'); ?>
+    <?php get_template_part('partials/content', 'filter'); ?>
 
     <section id="images-container" class="images-container">
 
     </section>
-    <button type="button" class="cta" id="load-more">Charger plus</button>
+
+    <button type="button" class="cta" id="load-more">Charger plus
+        <input type="hidden" name="FilterNonce" value="<?php echo wp_create_nonce('nonce_Filter'); ?>">
+    </button>
+
 </main>
 <?php
 get_footer();

@@ -129,6 +129,9 @@
                margin-bottom: 35px;
                text-transform: uppercase;
                margin: 35px 0;
+               span {
+                  font-size: 20px;
+               }
             }
          }
       }
@@ -139,21 +142,25 @@
             padding-top: 10px;
          }
       }
-      .images-container {
-         padding-top: 30px;
-         margin: 0 auto;
-         .image-box {
-            max-height: 320px;
-            img {
-               height: 100%;
-               min-height: unset;
-            }
-            .overlay {
-               .icon_eye {
-                  position: absolute;
-                  left: 48%;
-                  top: 47%;
-                  transform: scale(2);
+      .LikeMore {
+         &_text {
+            padding-top: 35px;
+         }
+         .images-container {
+            margin: 40px 0 70px 0;
+            .image-box {
+               max-height: 320px;
+               img {
+                  height: 100%;
+                  min-height: unset;
+               }
+               .overlay {
+                  .icon_eye {
+                     position: absolute;
+                     left: 48%;
+                     top: 47%;
+                     transform: scale(2);
+                  }
                }
             }
          }

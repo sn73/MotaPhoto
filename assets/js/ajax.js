@@ -35,7 +35,7 @@ function loadPosts() {
    let formats = document.getElementById("format").getAttribute("data-value");
    let sortby = document.getElementById("sortby").getAttribute("data-value");
 
-   // Utilise les valeurs du formulaire si elles existent, sinon utilise celles de l'URL
+   // Utilise les valeurs du formulaire si elles existent, sinon utiliser celles de l'URL
    categories = categories || "";
    formats = formats || "";
    sortby = sortby || "";
@@ -55,11 +55,12 @@ function loadPosts() {
          categories: categories,
          formats: formats,
          sortby: sortby,
+         nonce: nonce,
       }),
    })
       .then((response) => response.json())
       .then((data) => {
-         // console.log("max", data.max);
+         console.log(nonce);
          document.getElementById("images-container").innerHTML = data.content;
          if (data.max == 1) {
             document.getElementById("load-more").style.display = "none";
@@ -124,7 +125,7 @@ function lightbox_ajax(element) {
    const lightboxSections = document.querySelectorAll(".lightbox");
 
    let position = 0;
-   // Parcourez chaque section de lightbox
+   // Parcourir chaque section de lightbox
    lightboxSections.forEach((lightboxSection) => {
       const fGauche = lightboxSection.querySelector(".arrow_left");
       const fDroite = lightboxSection.querySelector(".arrow_right");

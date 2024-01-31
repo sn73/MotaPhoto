@@ -9,6 +9,7 @@ function mon_theme_enqueue_style()
 
 	wp_enqueue_script('script-ajax', get_template_directory_uri() . '/assets/js/ajax.js', array('jquery'));
 	wp_localize_script('script-ajax', 'ajaxurl', admin_url('admin-ajax.php'));
+	wp_localize_script('script-ajax', 'nonce', wp_create_nonce('nonce_Filter'));
 
 	wp_enqueue_script('single-ajax-script', get_stylesheet_directory_uri() . '/assets/js/ajax_single.js', array('jquery'), $version);
 	wp_enqueue_script('fontawesome-script', 'https://kit.fontawesome.com/5fbe3dd629.js', array());
@@ -30,9 +31,19 @@ function footer_menu()
 }
 add_action('init', 'footer_menu');
 
-
 // Activer la fonctionnalité d'image mise en avant
 add_theme_support('post-thumbnails');
+
+
+// Activer la fonctionnalité modèle de page
+function ajouter_modele_personnalise_page($templates)
+{
+	// Ajouter le nom de votre fichier de modèle sans l'extension
+	$templates['aboutus.php'] = __('Page A Propos', 'montheme');
+	return $templates;
+}
+add_filter('theme_page_templates', 'ajouter_modele_personnalise_page');
+
 
 
 // Ajouter une taille d'image personnalisée
@@ -48,6 +59,11 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 
 function FilterPosts()
 {
+
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'nonce_Filter')) {
+		die('Security check failed');
+	}
+
 	$page = $_POST["page"];
 	$numberposts = 8;
 	$totalposts = $numberposts * $page;
@@ -150,9 +166,9 @@ function loadPosts_Single()
 {
 	$numberposts_single = 2;
 
-		// $page_single = $_POST["page"];
+	// $page_single = $_POST["page"];
 	// Ajouter pour gérer l'affichage de plus de posts
-		// $totalposts_single = $numberposts_single * $page_single;
+	// $totalposts_single = $numberposts_single * $page_single;
 	// Ajouter $totalposts_single à "posts_per_page"
 
 	$cat = $_POST['cat'];
@@ -161,7 +177,8 @@ function loadPosts_Single()
 	$args_single = array(
 		'post_type' => 'photographie',
 		'posts_per_page' => $numberposts_single,
-		'post__not_in' => array($pid)
+		'post__not_in' => array($pid),
+		'orderby' => 'rand',
 	);
 	$args_single['tax_query'][] = array(
 		'taxonomy' => 'categorie',

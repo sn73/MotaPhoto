@@ -43,13 +43,18 @@
       border-bottom: solid 1px black;
       display: flex;
       justify-content: space-between;
-      max-height: 118px;
+      max-height: 117.1px;
       .order {
          width: 50%;
          display: flex;
          align-items: center;
          & span {
             width: 50%;
+            font-family: "Poppins", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
          }
       }
       .cta_order {
@@ -67,10 +72,11 @@
          justify-content: center;
          align-items: center;
          &:hover {
-            background-color: #fe5858;
-            transition: 1s;
+            background-color: black;
             color: white;
-            font-size: 20px;
+            transition: 1s;
+            // background-color: #fe5858;
+            // font-size: 20px;
          }
       }
       .carrousel {
@@ -109,6 +115,19 @@
                }
             }
          }
+      }
+   }
+   .LikeMore {
+      &_text {
+         padding-top: 50px;
+
+         font-family: "Space Mono", sans-serif;
+         font-size: 18px;
+         font-weight: 400;
+         text-transform: uppercase;
+      }
+      .images-container {
+         margin: 50px 0 110px 0;
       }
    }
 }

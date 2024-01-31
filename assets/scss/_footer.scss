@@ -3,22 +3,39 @@
    justify-content: center;
    border-top: solid 1px black;
    padding: 10px 0;
-      #menu-footer_menu {
-         display: flex;
-         gap: 100px;
-      }
+   #menu-footer_menu {
+      display: flex;
+      gap: 100px;
+   }
    li {
-      font-family: 'Space Mono', monospace;
+      font-family: "Space Mono", monospace;
       list-style: none;
       a {
          text-decoration: none;
          color: black;
          font-size: 18px;
          &:hover {
-            font-size: 24px;
-            color: #FE5858;
-            transition: 0.5s;
+            font-weight: 700;
+            // font-size: 24px;
+            // color: #FE5858;
+            // transition: 0.5s;
          }
+      }
+   }
+   .AllRightReserved {
+      display: flex;
+      align-items: center;
+      margin-left: 100px;
+
+      font-family: "Space Mono", monospace;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 400;
+      &:hover {
+         font-weight: 700;
+         // font-size: 24px;
+         // color: #FE5858;
+         // transition: 0.5s;
       }
    }
 }

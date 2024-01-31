@@ -45,8 +45,8 @@
             <?php
             $select_sortby = isset($_POST['sortby']) ? $_POST['sortby'] : '';
             ?>
-            <li class="dropdown_btn_list" data-value="ASC" <?php echo ($select_sortby == 'ASC') ? 'selected' : ''; ?>>Du plus récent au plus ancien</li>
-            <li class="dropdown_btn_list" data-value="DESC" <?php echo ($select_sortby == 'DESC') ? 'selected' : ''; ?>>Du plus ancien au plus récent</li>
+            <li class="dropdown_btn_list" data-value="DESC" <?php echo ($select_sortby == 'ASC') ? 'selected' : ''; ?>>Du plus récent au plus ancien</li>
+            <li class="dropdown_btn_list" data-value="ASC" <?php echo ($select_sortby == 'DESC') ? 'selected' : ''; ?>>Du plus ancien au plus récent</li>
         </ul>
     </div>
 

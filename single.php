@@ -64,8 +64,13 @@
         <?php get_template_part('partials/content', 'carrousel'); ?>
 
     </section>
-    <section id="images-container" class="images-container margin">
 
+    <section class="LikeMore">
+        <h3 class="LikeMore_text">Vous aimerez aussi</h3>
+
+        <div id="images-container" class="images-container margin">
+
+        </div>
     </section>
     <!-- Bouton pour afficher plus de posts -->
     <!-- <button id="load-more-single" class="cta" type="button">Toutes les photos</button> -->

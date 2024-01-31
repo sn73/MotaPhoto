@@ -81,9 +81,7 @@ header .header .nav-link .menu a {
   color: black;
 }
 header .header .nav-link .menu a:hover {
-  font-size: 24px;
-  color: #fe5858;
-  transition: 0.5s;
+  font-weight: 700;
 }
 header .header .menu_mobile {
   display: none;
@@ -112,9 +110,19 @@ header main {
   font-size: 18px;
 }
 .link_nav_footer li a:hover {
-  font-size: 24px;
-  color: #FE5858;
-  transition: 0.5s;
+  font-weight: 700;
+}
+.link_nav_footer .AllRightReserved {
+  display: flex;
+  align-items: center;
+  margin-left: 100px;
+  font-family: "Space Mono", monospace;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.link_nav_footer .AllRightReserved:hover {
+  font-weight: 700;
 }
 
 .hero_home {
@@ -213,7 +221,8 @@ header main {
   right: 5%;
 }
 
-.cta, #load-more {
+.cta,
+#load-more {
   cursor: pointer;
   border: solid 0px;
   border-radius: 2px;
@@ -227,11 +236,25 @@ header main {
   justify-content: center;
   align-items: center;
 }
-.cta:hover, #load-more:hover {
-  font-size: 20px;
+.cta:hover,
+#load-more:hover {
+  background-color: black;
   color: white;
   transition: 1s;
-  background-color: #fe5858;
+}
+
+#page {
+  padding-top: 80px;
+}
+
+.aboutus .wp-block-heading {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-size: 28px;
+}
+.aboutus p {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
 }
 
 .dropdown {
@@ -260,7 +283,7 @@ header main {
   padding: 11px 24px;
 }
 .dropdown_btn_list:hover {
-  background-color: red;
+  background-color: #E00000;
   color: white;
   font-size: 16px;
   transition: 1s;
@@ -355,9 +378,11 @@ header main {
   font-family: "Space Mono", monospace;
   font-size: 14px;
 }
-.lightbox_container .arrow_left a {
-  text-decoration: none;
-  color: white;
+.lightbox_container .arrow_left span {
+  font-weight: 400;
+}
+.lightbox_container .arrow_left span:hover {
+  font-weight: 700;
 }
 .lightbox_container .arrow_right {
   position: absolute;
@@ -368,9 +393,11 @@ header main {
   font-family: "Space Mono", monospace;
   font-size: 14px;
 }
-.lightbox_container .arrow_right a {
-  text-decoration: none;
-  color: white;
+.lightbox_container .arrow_right span {
+  font-weight: 400;
+}
+.lightbox_container .arrow_right span:hover {
+  font-weight: 700;
 }
 .lightbox_info {
   display: flex;
@@ -424,7 +451,7 @@ header main {
   border-bottom: solid 1px black;
   display: flex;
   justify-content: space-between;
-  max-height: 118px;
+  max-height: 117.1px;
 }
 .single-page .order-photo .order {
   width: 50%;
@@ -433,6 +460,11 @@ header main {
 }
 .single-page .order-photo .order span {
   width: 50%;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
 }
 .single-page .order-photo .cta_order {
   cursor: pointer;
@@ -449,10 +481,9 @@ header main {
   align-items: center;
 }
 .single-page .order-photo .cta_order:hover {
-  background-color: #fe5858;
-  transition: 1s;
+  background-color: black;
   color: white;
-  font-size: 20px;
+  transition: 1s;
 }
 .single-page .order-photo .carrousel_content {
   gap: 15px;
@@ -489,6 +520,16 @@ header main {
   left: 50%;
   transform: translate(40%, 10%);
 }
+.single-page .LikeMore_text {
+  padding-top: 50px;
+  font-family: "Space Mono", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.single-page .LikeMore .images-container {
+  margin: 50px 0 110px 0;
+}
 
 .popup {
   display: none;
@@ -512,10 +553,10 @@ header main {
   right: 25%;
   margin-top: 20px;
 }
-.popup_close {
-  display: none;
-}
 
+.wpcf7 {
+  color: #313144;
+}
 .wpcf7 ul {
   list-style: none;
   font-family: "Poppins", sans-serif;
@@ -556,15 +597,15 @@ header main {
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.02);
   width: 100%;
   height: 50px;
-  font-size: 16px;
   margin: 20px auto 40px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-size: 16px;
 }
 .wpcf7 .cta-contact:hover {
   background-color: #fe5858;
-  transition: 2s;
+  transition: 1s;
+  color: white;
 }
 
 /***** PARTIE FRONT-PAGE *****/
@@ -583,6 +624,8 @@ header main {
     width: 100vw;
   }
   body header .header {
+    position: relative;
+    left: 0%;
     height: 80px;
     width: 100vw;
     padding: 0;
@@ -626,6 +669,24 @@ header main {
     bottom: 50%;
     left: 50%;
   }
+  @keyframes slideLeftNavLink {
+    from {
+      left: 100%;
+      transform: translate(0%, -45.3%);
+    }
+    to {
+      left: 50%;
+      transform: translate(-50%, -45.3%);
+    }
+  }
+  @keyframes slideLeftHeader {
+    from {
+      left: 100%;
+    }
+    to {
+      left: 0%;
+    }
+  }
   body header .nav-link-mobile {
     display: none;
     background-color: #e00000;
@@ -634,8 +695,8 @@ header main {
     position: fixed;
     z-index: 30;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -45.2%);
+    left: 100%;
+    transform: translate(0%, -45.3%);
   }
   body header .nav-link-mobile .link_header {
     height: 100%;
@@ -658,7 +719,7 @@ header main {
     font-family: "Space Mono", sans-serif;
   }
   body header .popup {
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(-50%, -50%) scale(0.9);
     position: fixed;
     top: 50%;
     left: 50%;
@@ -692,6 +753,9 @@ header main {
   body .dropdown_btn_list {
     font-size: 12px;
   }
+  body .dropdown_btn #hide_label {
+    color: black;
+  }
   body .dropdown_categories {
     width: 70%;
     margin: 0 auto;
@@ -716,7 +780,7 @@ header main {
     flex-direction: column;
     width: 100%;
     margin: 40px auto;
-    gap: 50px;
+    gap: 20px;
   }
   body .images-container .image-box {
     width: 85vw;
@@ -726,10 +790,7 @@ header main {
     display: block;
   }
   body .images-container .image-box img {
-    top: 50%;
-    left: 50%;
     height: 100%;
-    transform: translate(-50%, -50%);
     -o-object-fit: cover;
        object-fit: cover;
   }
@@ -809,7 +870,6 @@ header main {
     width: 100%;
   }
   body .single-page .infos .current-image img {
-    display: flex;
     margin: 0 auto;
     width: 90%;
     height: 100%;
@@ -818,13 +878,7 @@ header main {
     width: 100%;
   }
   body .single-page .infos .details-image .content-photo {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 25px;
-    width: 70%;
-    margin-bottom: 35px;
-    text-transform: uppercase;
+    width: 90%;
     margin: 35px auto;
   }
   body .single-page .infos .details-image .content-photo h2 {
@@ -840,7 +894,6 @@ header main {
   body .single-page .order-photo .order {
     width: 80%;
     display: flex;
-    flex-wrap: nowrap;
     flex-direction: column;
     margin: auto;
     gap: 40px;
@@ -862,18 +915,27 @@ header main {
   body .single-page .order-photo .carrousel {
     display: none;
   }
-  body .single-page .images-container {
+  body .single-page .LikeMore_text {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    margin: 0;
+  }
+  body .single-page .LikeMore .images-container {
     width: 85%;
-    margin: 40px auto;
+    margin: 30px auto;
   }
   body .popup {
-    width: 80%;
+    width: 90%;
   }
   body .popup .contact-hero {
     margin-top: 10px;
   }
   body .popup .wpcf7 .content-form {
     width: 80%;
+  }
+  body .link_nav_footer {
+    flex-direction: column;
   }
   body .link_nav_footer #menu-footer_menu {
     display: flex;
@@ -884,6 +946,13 @@ header main {
   }
   body .link_nav_footer #menu-footer_menu a {
     font-size: 20px;
+  }
+  body .link_nav_footer .AllRightReserved {
+    display: flex;
+    margin-left: 0;
+    font-size: 20px;
+    justify-content: center;
+    margin-top: 30px;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1023.9px) {
@@ -1016,6 +1085,9 @@ header main {
     text-transform: uppercase;
     margin: 35px 0;
   }
+  .single-page .infos .details-image .content-photo span {
+    font-size: 20px;
+  }
   .single-page .order-photo {
     max-height: unset;
     /* Masquage du carrousel en mobile */
@@ -1023,18 +1095,20 @@ header main {
   .single-page .order-photo .carrousel {
     padding-top: 10px;
   }
-  .single-page .images-container {
-    padding-top: 30px;
-    margin: 0 auto;
+  .single-page .LikeMore_text {
+    padding-top: 35px;
   }
-  .single-page .images-container .image-box {
+  .single-page .LikeMore .images-container {
+    margin: 40px 0 70px 0;
+  }
+  .single-page .LikeMore .images-container .image-box {
     max-height: 320px;
   }
-  .single-page .images-container .image-box img {
+  .single-page .LikeMore .images-container .image-box img {
     height: 100%;
     min-height: unset;
   }
-  .single-page .images-container .image-box .overlay .icon_eye {
+  .single-page .LikeMore .images-container .image-box .overlay .icon_eye {
     position: absolute;
     left: 48%;
     top: 47%;

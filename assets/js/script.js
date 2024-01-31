@@ -68,16 +68,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
    let menuMobile = document.querySelector(".menu_mobile");
+   let header = document.querySelector(".header");
    menuMobile.addEventListener("click", function () {
       let navLink = document.querySelector("header nav");
 
       if (navLink.style.display === "none") {
          navLink.style.display = "block";
          navLink.classList.add("nav-link-mobile");
+
+         let navLinkMobile = document.querySelector(".nav-link-mobile");
+         navLinkMobile.style.animation = "slideLeftNavLink 1s forwards";
+         header.style.animation = "slideLeftHeader 1s forwards";
+
          menuMobile.classList.add("croix");
       } else {
          navLink.style.display = "none";
          navLink.classList.remove("nav-link-mobile");
+         header.style.animation = "none";
          menuMobile.classList.remove("croix");
       }
    });

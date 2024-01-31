@@ -28,14 +28,14 @@ if ($categs && !is_wp_error($categs)) {
         </div>
         <div class="lightbox_container">
             <img class="lightbox_image" src="<?php echo get_the_post_thumbnail_url($post_id, 'large'); ?>" alt="Image">
-            <span class="arrow_left prev-link">
+            <div class="arrow_left prev-link">
                 <i class="fa-solid fa-arrow-left-long"></i>
-                Précédente
-            </span>
-            <span class="arrow_right next-link">
-                Suivante
+                <span>Précédente</span>
+            </div>
+            <div class="arrow_right next-link">
+                <span>Suivante</span>
                 <i class="fa-solid fa-arrow-right-long"></i>
-            </span>
+            </div>
         </div>
         <div class="lightbox_info">
             <span class="ref_photo" data-ref="<?php echo $current_ref; ?>"><?php echo $current_ref; ?></span>
