@@ -834,12 +834,12 @@ header main {
   body .images-container .image-box .overlay .icon_full .lightbox_container .arrow_left {
     left: 0;
     top: 100%;
-    padding-top: 170px;
+    margin-top: 110px;
   }
   body .images-container .image-box .overlay .icon_full .lightbox_container .arrow_right {
     right: 0;
     top: 100%;
-    padding-top: 170px;
+    margin-top: 110px;
   }
   body .images-container .image-box .overlay .icon_full .lightbox_image {
     width: 90vw;
