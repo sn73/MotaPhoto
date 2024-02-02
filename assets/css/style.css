@@ -121,9 +121,6 @@ header main {
   text-transform: uppercase;
   font-weight: 400;
 }
-.link_nav_footer .AllRightReserved:hover {
-  font-weight: 700;
-}
 
 .hero_home {
   display: flex;
@@ -451,7 +448,7 @@ header main {
   border-bottom: solid 1px black;
   display: flex;
   justify-content: space-between;
-  max-height: 117.1px;
+  max-height: 117px;
 }
 .single-page .order-photo .order {
   width: 50%;
